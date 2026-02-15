@@ -1,41 +1,11 @@
-# Site Settings
-title: Tech Notes
-description: My personal knowledge base
-url: "https://yourusername.github.io" # Change to your URL
-baseurl: "" 
-lang: en
-timezone: UTC
-
-# Theme Selection
 remote_theme: cotes2020/jekyll-theme-chirpy
 
-# Required Plugins for Chirpy Functionality
 plugins:
   - jekyll-remote-theme
-  - jekyll-archives
-  - jekyll-paginate
-  - jekyll-polyglot # Only if you need multi-language
-  - jekyll-sitemap
-  - jekyll-seo-tag
-  - jekyll-gist
-  - jekyll-twitter-plugin
 
-# Pagination setup
-paginate: 10
-paginate_path: /page:num/
+title: Jojo’s Technical Notes
+tagline: A curated archive of software, data, and engineering insights
+description: Practical notes, experiments, and references on programming, data systems, and applied technology.
 
-# Archive settings (Crucial for Chirpy's sidebar/tags)
-jekyll-archives:
-  enabled: [taxonomies]
-  layouts:
-    tag: tag
-    category: category
-  permalinks:
-    tag: /tags/:name/
-    category: /categories/:name/
-
-# Theme Customization
-google_analytics:
-  id: "" # Fill this in if you have one
-disqus:
-  shortname: "" # Fill this in for comments
+author: Jojo
+lang: en
