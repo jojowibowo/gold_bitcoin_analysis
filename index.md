@@ -6,6 +6,21 @@
 
 ## **Live Interactive Dashboard**  
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class='tableauPlaceholder' id='viz1707000000000' style='position: relative'>
     <noscript>
         <a href='#'>
@@ -44,6 +59,21 @@
     scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
     vizElement.parentNode.insertBefore(scriptElement, vizElement);
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 [![View Dashboard](https://github.com/jojowibowo/gold_bitcoin_analysis/blob/main/visualizations/AI%20Inflation%20Hedge%20Dashboard.png?raw=true)](https://public.tableau.com/views/LionCityFinAIInflationHedgeDashboard/AIInflationHedgeDashboard)
 
