@@ -1,5 +1,5 @@
-remote_theme: cotes2020/jekyll-theme-chirpy
+remote_theme: just-the-docs/just-the-docs
 plugins:
   - jekyll-remote-theme
-title: Tech Notes
-description: My personal knowledge base
+title: Project Docs
+description: Documentation made simple
