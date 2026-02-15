@@ -58,7 +58,7 @@ As the **Analyst**, I managed the end-to-end data pipeline involving 410 weekly 
 ---
 
 ## **Project Assets**  
--   **[Full Technical Analysis](https://github.com/jojowibowo/gold_bitcoin_analysis/blob/main/analysis.html)** – _A web-ready deep dive into the code and cleaning logic._
+-   **[Full Technical Analysis](./analysis.html)** – _A web-ready deep dive into the code and cleaning logic._
     
 -   **[Detailed Strategy Report (PDF)](https://github.com/jojowibowo/gold_bitcoin_analysis/blob/main/reports/gold_bitcoin_analysis.pdf)** – _Executive summary and 2026 outlook._
     
