@@ -1,8 +1,8 @@
-# **Project Title: AI-Driven Inflation Hedge Strategy for Singaporean Retail Investors (2026 Outlook)**
+# **Gold and Bitcoin as Inflation Hedges: A Regime-Dependent, Data-Driven Analysis for Singaporean Retail Investors**
 
 
-## **Dashboard**(https://public.tableau.com/views/LionCityFinAIInflationHedgeDashboard/AIInflationHedgeDashboard)  
-![Project Dashboard](https://github.com/jojowibowo/gold_bitcoin_analysis/tree/main/visualizations/AI Inflation Hedge Dashboard.png)
+## [**Dashboard**](https://public.tableau.com/views/LionCityFinAIInflationHedgeDashboard/AIInflationHedgeDashboard)  
+![Project Dashboard](https://github.com/jojowibowo/gold_bitcoin_analysis/blob/main/visualizations/AI%20Inflation%20Hedge%20Dashboard.png?raw=true)
 
 
 ## **Executive Summary**
