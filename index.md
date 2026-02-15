@@ -1,57 +1,87 @@
-# Gold & Bitcoin as Inflation Hedges
-### A Regime-Dependent Analysis for Singaporean Retail Investors
-**By Jojo Wibowo** | [LinkedIn](https://www.linkedin.com/in/jojo-wibowo/) | [GitHub Repo](https://jojowibowo.github.io/gold_bitcoin_analysis/)
+# **Gold & Bitcoin as Inflation Hedges**  
+### **A Regime-Dependent Analysis for Singaporean Retail Investors**  
+**By Jojo Wibowo** | [LinkedIn](https://www.linkedin.com/in/jojo-wibowo/) | [jojowibowo@proton.me](mailto:jojowibowo@proton.me)
 
 ---
 
-## Live Interactive Dashboard
+## **Live Interactive Dashboard**  
 [![View Dashboard](https://github.com/jojowibowo/gold_bitcoin_analysis/blob/main/visualizations/AI%20Inflation%20Hedge%20Dashboard.png?raw=true)](https://public.tableau.com/views/LionCityFinAIInflationHedgeDashboard/AIInflationHedgeDashboard)
 
-*A mobile-friendly interface featuring normalized 0–100 stress bars for Macro Stress and Sentiment.*
+_A mobile-friendly interface featuring normalized 0–100 stress bars for Macro Stress and Sentiment. Developed as part of the **Lion City FinAI** framework._
 
 ---
 
-## Project Summary
-Developed a regime-aware, AI-assisted decision-support framework for **Lion City FinAI**. This project clarifies the "Retail Dilemma" by distinguishing between macro-driven and sentiment-driven market regimes using machine learning.
+## **Project Summary**  
+Developed a regime-aware, AI-assisted decision-support framework to help Singaporean retail investors navigate the "Retail Dilemma." Traditional inflation hedges often fail during macro-financial stress; this project provides a data-driven alternative to static investment claims.
 
-### The Problem
-Singaporean investors face fragmented info. Static tools fail to capture macroeconomic regime shifts, leading to misaligned risk assessments during financial stress.
+### **The Problem**  
+Singaporean investors face fragmented information and conflicting narratives. Static tools fail to capture **regime shifts**, leading to misaligned risk assessments for assets like Gold and Bitcoin during periods of high inflation.
 
-### The Solution: "Traffic Light" Indicators
-- **Gold:** Identified as a **Macro-Stress Stabilizer** (0.017 correlation to CPI; defensive utility).
-- **Bitcoin:** Identified as a **Sentiment-Driven Risk Asset** (50.5% of model importance driven by fear/greed).
+### **The Solution:** "Traffic Light" Indicators  
+-   **Gold (The Stabilizer):** Identified as a Macro-Stress Stabilizer (0.017 correlation to CPI). It functions as a defensive hedge against currency shocks rather than a direct inflation tracker.
+    
+-   **Bitcoin (The Sentiment Asset):** Characterized as a Sentiment-Driven Risk Asset. 50.5% of its top-feature importance is derived from market mood (Fear & Greed Index).
 
 ---
 
-## Key Analytical Insights
+## **Key Analytical Insights**  
 > [!IMPORTANT]
-> **Investors should use Gold defensively and Bitcoin tactically.**
+> 
+> **Core Strategy:** Use Gold defensively for macro stability and Bitcoin tactically for sentiment-based growth.
 
-| Asset | Key Driver | 2026 Strategy |
+| **Asset** | **Key Driver** | **2026 Strategy** |
 | :--- | :--- | :--- |
 | **Gold** | Macro Stress / USD-SGD Vol | Buy during High Macro Stress (>60) |
 | **Bitcoin** | Market Sentiment | Tactical exposure during Greed (>50) |
 
+### **Model Performance Proof**  
+
+-   **Predictive Edge:** The Logistic Regression model achieved **60.6% accuracy** in predicting Bitcoin's directional movement.
+    
+-   **Feature Dominance:** In the Random Forest model, the **Crypto Fear & Greed Index** was the single most influential variable (Importance: **0.3204**), far outweighing traditional macro indicators.
+
 ---
 
-## Technical Implementation
-### Data Pipeline & Methods
-- **Preprocessing:** Winsorization (outlier management) and Forward-filling.
-- **Modeling:** Random Forest Regression on 410 weekly observations.
-- **Engineering:** Percentile-based normalization for 0–100 scaling.
+## **Technical Implementation (Scope & Responsibility)**  
+### **Data Pipeline & Methods**  
+As the **Lead Analyst**, I managed the end-to-end data pipeline involving 410 weekly observations:
 
-### Tools
+-   **Data Engineering:** Integrated disparate sources (Yahoo Finance, FRED, SingStat) and applied **Winsorization** to mitigate the impact of extreme market outliers.
+    
+-   **Feature Engineering:** Developed normalized 0–100 stress indices and percentile-based scaling to simplify complex signals for retail users.
+    
+-   **Modeling:** Benchmarked Linear Regression, Random Forest, and Logistic Regression to determine the most interpretable regime signals.
+    
+### **Tools & Stack**  
 `Python` `Pandas` `Scikit-Learn` `Tableau` `Yahoo Finance API`
 
 ---
 
-## Project Assets
-- [Full Technical Notebook (Jupyter)](./gold_bitcoin_analysis.ipynb)
-- [Detailed Strategy Report (PDF)](./gold_bitcoin_analysis.pdf)
-- [Cleaned Master Dataset (CSV)](./gold_bitcoin_analysis.xlsx - Master_Data_Final.csv)
+## **Project Assets**  
+-   **[Full Technical Analysis](https://github.com/jojowibowo/gold_bitcoin_analysis/blob/main/analysis.html)** – _A web-ready deep dive into the code and cleaning logic._
+    
+-   **[Detailed Strategy Report (PDF)](https://github.com/jojowibowo/gold_bitcoin_analysis/blob/main/reports/gold_bitcoin_analysis.pdf)** – _Executive summary and 2026 outlook._
+    
+-   **[Cleaned Master Dataset](https://github.com/jojowibowo/gold_bitcoin_analysis/blob/main/data/gold_bitcoin_analysis.xlsx)** – _The processed 410-observation dataset._
 
 ---
 
-## 🛡️ Ethical Commitment
-As the researcher for Lion City FinAI, I prioritize **User Protection** and **Transparency** over persuasive narratives. 
-*"All models are wrong, but some are useful."*
+## **Ethical Commitment**  
+As a researcher for Lion City FinAI, I prioritize **User Protection** and **Transparency** over persuasive narratives.
+
+_"All models are wrong, but some are useful." — George Box_
+
+---
+
+## 📬 Contact & Collaboration
+
+I am currently seeking opportunities in **Data Analytics and Financial Research**.
+
+-   **Email:** [jojowibowo@proton.me](mailto:jojowibowo@proton.me)
+    
+-   **LinkedIn:** [linkedin.com/in/jojo-wibowo](https://www.linkedin.com/in/jojo-wibowo/)
+    
+-   **Location:** Remote
+    
+
+---
