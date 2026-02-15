@@ -18,7 +18,7 @@
 </style>
 
 # Gold & Bitcoin as Inflation Hedges
-**Project by Jojo Wibowo** | [LinkedIn](https://www.linkedin.com/in/jojo-wibowo/)
+**Project by Jojo Wibowo**
 
 ---
 
