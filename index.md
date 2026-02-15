@@ -73,7 +73,7 @@ _"All models are wrong, but some are useful." — George Box_
 
 ---
 
-## 📬 Contact & Collaboration
+## **Contact & Collaboration**  
 
 I am currently seeking opportunities in **Data Analytics and Financial Research**.
 
