@@ -7,7 +7,7 @@
 ## **Live Interactive Dashboard**  
 
 <div id='vizContainer' style='position: relative; width: 100%; display: flex; justify-content: center; background-color: #f9f9f9; padding: 20px 0;'>
-    <div class='tableauPlaceholder' id='viz1707000000000' style='position: relative; width: 95%; max-width: 1100px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);'>
+    <div class='tableauPlaceholder' id='viz1707000000000' style='position: relative; width: 100%; box-shadow: 0 4px 10px rgba(0,0,0,0.1);'>
         <object class='tableauViz' style='display:none;'>
             <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
             <param name='embed_code_version' value='3' /> 
@@ -29,20 +29,6 @@
 <script type='text/javascript'>
     var divElement = document.getElementById('viz1707000000000');
     var vizElement = divElement.getElementsByTagName('object')[0];
-    
-    // Logic to prevent vertical stretching
-    function resizeViz() {
-        var width = divElement.offsetWidth;
-        if (width > 800) { 
-            // Desktop: Fixed professional height
-            vizElement.style.width = '100%'; 
-            vizElement.style.height = '750px'; 
-        } else { 
-            // Mobile: Taller to allow for stacked charts
-            vizElement.style.width = '100%'; 
-            vizElement.style.height = '1000px'; 
-        }
-    }
 
     resizeViz();
     window.addEventListener('resize', resizeViz);
