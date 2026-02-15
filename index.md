@@ -6,8 +6,8 @@
 
 ## **Live Interactive Dashboard**  
 
-<div id='vizContainer' style='position: relative; width: 100%; display: flex; justify-content: center; padding: 20px 0;'>
-    <div class='tableauPlaceholder' id='viz1707000000000' style='position: relative; width: 100%; max-width: 1100px;'>
+<div id='vizContainer' style='position: relative; width: 100%; display: flex; justify-content: center; background-color: #f9f9f9; padding: 20px 0;'>
+    <div class='tableauPlaceholder' id='viz1707000000000' style='position: relative; width: 95%; max-width: 1100px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);'>
         <object class='tableauViz' style='display:none;'>
             <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
             <param name='embed_code_version' value='3' /> 
@@ -30,19 +30,23 @@
     var divElement = document.getElementById('viz1707000000000');
     var vizElement = divElement.getElementsByTagName('object')[0];
     
-    // 16:9 Ratio Logic: Height = Width * 0.5625
-    // We add +60px to account for the Tableau toolbar at the bottom
-    var calculatedHeight = (divElement.offsetWidth * 0.5625) + 60;
-    
-    if ( divElement.offsetWidth > 500 ) { 
-        vizElement.style.width = '100%';
-        vizElement.style.height = calculatedHeight + 'px';
-    } else { 
-        // On mobile, 16:9 is usually too small to read, so we use a taller ratio
-        vizElement.style.width = '100%';
-        vizElement.style.height = '1100px'; 
+    // Logic to prevent vertical stretching
+    function resizeViz() {
+        var width = divElement.offsetWidth;
+        if (width > 800) { 
+            // Desktop: Fixed professional height
+            vizElement.style.width = '100%'; 
+            vizElement.style.height = '750px'; 
+        } else { 
+            // Mobile: Taller to allow for stacked charts
+            vizElement.style.width = '100%'; 
+            vizElement.style.height = '1000px'; 
+        }
     }
-    
+
+    resizeViz();
+    window.addEventListener('resize', resizeViz);
+
     var scriptElement = document.createElement('script');
     scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
     vizElement.parentNode.insertBefore(scriptElement, vizElement);
