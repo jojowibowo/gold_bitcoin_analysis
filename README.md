@@ -1,2 +1,2 @@
 # gold_bitcoin_analysis
-End-to-end data pipeline and machine learning analysis evaluating the effectiveness of Gold vs. Bitcoin as inflation hedges for Singaporean retail investors.
+An end-to-end data science project analyzing the hedging effectiveness of Gold and BTC against Singaporean CPI using Random Forest and SARIMAX models.
