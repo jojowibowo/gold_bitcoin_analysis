@@ -6,8 +6,8 @@
 
 ## **Live Interactive Dashboard**  
 
-<div id='vizContainer' style='position: relative; width: 100%; display: flex; justify-content: center; background-color: #f9f9f9; padding: 20px 0;'>
-    <div class='tableauPlaceholder' id='viz1707000000000' style='position: relative; width: 100%; box-shadow: 0 4px 10px rgba(0,0,0,0.1);'>
+<div id='vizContainer' style='position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; background-color: transparent; padding: 10px 0;'>
+    <div class='tableauPlaceholder' id='viz1707000000000' style='position: relative; width: 100%; max-width: 1500px;'>
         <object class='tableauViz' style='display:none;'>
             <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
             <param name='embed_code_version' value='3' /> 
@@ -31,18 +31,22 @@
     var vizElement = divElement.getElementsByTagName('object')[0];
 
     function resizeViz() {
-        // 1. Get the actual width of the container on the screen
         var containerWidth = divElement.offsetWidth;
-        
-        // 2. Force the width to 100%
         vizElement.style.width = '100%';
-        
-        // 3. Calculate 16:9 height (Height = Width * 9 / 16)
-        // This ensures the dashboard internal engine matches the visual box
-        vizElement.style.height = (containerWidth * 0.5625) + 'px';
+
+        // FIX: Adjusting height logic to prevent truncation
+        if (containerWidth > 800) {
+            // Desktop: Taller height to fit all charts and legends
+            vizElement.style.height = '850px'; 
+        } else if (containerWidth > 500) {
+            // Tablet
+            vizElement.style.height = '900px';
+        } else {
+            // Mobile: Vertical stack needs significantly more height
+            vizElement.style.height = '1200px';
+        }
     }
 
-    // Run the resize on load and whenever the window changes
     resizeViz();
     window.addEventListener('resize', resizeViz);
 
