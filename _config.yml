@@ -1,5 +1,7 @@
-remote_theme: just-the-docs/just-the-docs
+remote_theme: mmistakes/minimal-mistakes
 plugins:
   - jekyll-remote-theme
-title: Project Docs
-description: Documentation made simple
+  - jekyll-paginate
+  - jekyll-sitemap
+title: My Blog
+description: Exploring ideas with Jekyll
