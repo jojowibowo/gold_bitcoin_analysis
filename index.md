@@ -1,54 +1,55 @@
-# **Gold & Bitcoin as Inflation Hedges**  
-### **A Regime-Dependent Analysis for Singaporean Retail Investors**  
-**By Jojo Wibowo** | [LinkedIn](https://www.linkedin.com/in/jojo-wibowo/) | [jojowibowo@proton.me](mailto:jojowibowo@proton.me)
+<style>
+  /* 1. Break the container walls */
+  .container-lg, .wrapper { max-width: 1200px !important; margin: auto; padding: 20px; }
+  
+  /* 2. Modern Typography */
+  body { font-family: 'Inter', -apple-system, sans-serif; color: #2d3436; line-height: 1.6; }
+  h1, h2 { color: #2d3436; border-bottom: 2px solid #00b894; padding-bottom: 10px; }
+  
+  /* 3. The Dashboard "Full-Bleed" Container */
+  .dashboard-frame {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin: 30px 0;
+    border: 1px solid #e1e4e8;
+  }
+</style>
+
+# Gold & Bitcoin as Inflation Hedges
+**Project by Jojo Wibowo** | [LinkedIn](https://www.linkedin.com/in/jojo-wibowo/)
 
 ---
 
 ## **Live Interactive Dashboard**  
 
-<div id='vizContainer' style='position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; background-color: transparent; padding: 10px 0;'>
-    <div class='tableauPlaceholder' id='viz1707000000000' style='position: relative; width: 100%; max-width: 1500px;'>
-        <object class='tableauViz' style='display:none;'>
-            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-            <param name='embed_code_version' value='3' /> 
-            <param name='site_root' value='' />
-            <param name='name' value='LionCityFinAIInflationHedgeDashboard/AIInflationHedgeDashboard' />
-            <param name='tabs' value='no' />
-            <param name='toolbar' value='yes' />
-            <param name='animate_transition' value='yes' />
-            <param name='display_static_image' value='no' />
-            <param name='display_spinner' value='yes' />
-            <param name='display_overlay' value='yes' />
-            <param name='display_count' value='yes' />
-            <param name='language' value='en-US' />
-            <param name='filter' value='publish=yes' />
-        </object>
-    </div>
+<div class="dashboard-frame">
+  <div id='viz1707000000000' style='position: relative; width: 100%;'>
+    <object class='tableauViz' style='display:none;'>
+        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+        <param name='name' value='LionCityFinAIInflationHedgeDashboard/AIInflationHedgeDashboard' />
+        <param name='toolbar' value='yes' />
+        <param name='animate_transition' value='yes' />
+        <param name='display_static_image' value='no' />
+        <param name='display_spinner' value='yes' />
+    </object>
+  </div>
 </div>
 
 <script type='text/javascript'>
     var divElement = document.getElementById('viz1707000000000');
     var vizElement = divElement.getElementsByTagName('object')[0];
-
-    function resizeViz() {
-        var containerWidth = divElement.offsetWidth;
+    
+    function fitDashboard() {
+        var width = divElement.offsetWidth;
         vizElement.style.width = '100%';
-
-        // FIX: Adjusting height logic to prevent truncation
-        if (containerWidth > 800) {
-            // Desktop: Taller height to fit all charts and legends
-            vizElement.style.height = '850px'; 
-        } else if (containerWidth > 500) {
-            // Tablet
-            vizElement.style.height = '900px';
-        } else {
-            // Mobile: Vertical stack needs significantly more height
-            vizElement.style.height = '1200px';
-        }
+        // Responsive height logic: Taller for mobile to prevent truncation
+        vizElement.style.height = (width > 800) ? '850px' : '1100px';
     }
 
-    resizeViz();
-    window.addEventListener('resize', resizeViz);
+    fitDashboard();
+    window.onresize = fitDashboard;
 
     var scriptElement = document.createElement('script');
     scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
