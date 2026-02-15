@@ -2,7 +2,7 @@
 
 
 ## **Dashboard**(https://public.tableau.com/views/LionCityFinAIInflationHedgeDashboard/AIInflationHedgeDashboard)  
-![Project Dashboard](visualizations/AI Inflation Hedge Dashboard.png)
+![Project Dashboard](https://github.com/jojowibowo/gold_bitcoin_analysis/tree/main/visualizations/AI Inflation Hedge Dashboard.png)
 
 
 ## **Executive Summary**
