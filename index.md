@@ -44,7 +44,7 @@ Singaporean investors face fragmented information and conflicting narratives. St
 
 ## **Technical Implementation (Scope & Responsibility)**  
 ### **Data Pipeline & Methods**  
-As the **Lead Analyst**, I managed the end-to-end data pipeline involving 410 weekly observations:
+As the **Analyst**, I managed the end-to-end data pipeline involving 410 weekly observations:
 
 -   **Data Engineering:** Integrated disparate sources (Yahoo Finance, FRED, SingStat) and applied **Winsorization** to mitigate the impact of extreme market outliers.
     
