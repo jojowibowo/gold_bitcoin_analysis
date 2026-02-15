@@ -1,21 +1,67 @@
 <style>
-  /* 1. Break the container walls */
-  .container-lg, .wrapper { max-width: 1200px !important; margin: auto; padding: 20px; }
-  
-  /* 2. Modern Typography */
-  body { font-family: 'Inter', -apple-system, sans-serif; color: #2d3436; line-height: 1.6; }
-  h1, h2 { color: #2d3436; border-bottom: 2px solid #00b894; padding-bottom: 10px; }
-  
-  /* 3. The Dashboard "Full-Bleed" Container */
-  .dashboard-frame {
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    overflow: hidden;
-    margin: 30px 0;
-    border: 1px solid #e1e4e8;
+  /* 1. Reset and Background */
+  body { 
+    background-color: #f4f7f6; 
+    font-family: 'Inter', -apple-system, sans-serif; 
+    color: #1a1c23;
+    margin: 0; padding: 0;
   }
+  
+  /* 2. Professional Container */
+  .main-content { 
+    max-width: 1000px; 
+    margin: 0 auto; 
+    padding: 40px 20px; 
+  }
+
+  /* 3. The "Hero" Card */
+  .hero-section {
+    background: linear-gradient(135deg, #00b894 0%, #0984e3 100%);
+    color: white;
+    padding: 60px 40px;
+    border-radius: 24px;
+    margin-bottom: 40px;
+    box-shadow: 0 20px 40px rgba(0, 184, 148, 0.2);
+  }
+
+  /* 4. Modern Dashboard Card */
+  .card {
+    background: white;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+
+  /* 5. Clean Buttons */
+  .btn-primary {
+    background: #00b894;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+    display: inline-block;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,184,148,0.3); }
+
+  /* 6. Typography */
+  h1 { font-size: 2.5rem; margin: 0; font-weight: 800; }
+  h2 { color: #2d3436; font-weight: 700; margin-top: 0; }
 </style>
+
+<div class="main-content">
+
+<div class="hero-section">
+  <h1>Lion City FinAI</h1>
+  <p>Gold & Bitcoin as Inflation Hedges: A Regime-Dependent AI Analysis</p>
+  <div style="margin-top: 20px;">
+    <a href="mailto:jojowibowo@proton.me" class="btn-primary">Contact Analyst</a>
+    <a href="https://www.linkedin.com/in/jojo-wibowo/" class="btn-primary" style="background: rgba(255,255,255,0.2); margin-left: 10px;">LinkedIn</a>
+  </div>
+</div>
 
 # Gold & Bitcoin as Inflation Hedges
 **Project by Jojo Wibowo**
@@ -24,37 +70,35 @@
 
 ## **Live Interactive Dashboard**  
 
-<div class="dashboard-frame">
-  <div id='viz1707000000000' style='position: relative; width: 100%;'>
-    <object class='tableauViz' style='display:none;'>
-        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-        <param name='name' value='LionCityFinAIInflationHedgeDashboard/AIInflationHedgeDashboard' />
-        <param name='toolbar' value='yes' />
-        <param name='animate_transition' value='yes' />
-        <param name='display_static_image' value='no' />
-        <param name='display_spinner' value='yes' />
-    </object>
-  </div>
+<div class="card">
+  <h2>📊 Interactive Strategy Dashboard</h2>
+  <div id='vizContainer' style='width: 100%;'>
+    <div class='tableauPlaceholder' id='viz1707000000000' style='position: relative; width: 100%;'>
+        <object class='tableauViz' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+            <param name='name' value='LionCityFinAIInflationHedgeDashboard/AIInflationHedgeDashboard' />
+            <param name='toolbar' value='yes' />
+            <param name='display_static_image' value='no' />
+            <param name='display_spinner' value='yes' />
+        </object>
+    </div>
 </div>
 
 <script type='text/javascript'>
     var divElement = document.getElementById('viz1707000000000');
     var vizElement = divElement.getElementsByTagName('object')[0];
-    
-    function fitDashboard() {
+    function resizeViz() {
         var width = divElement.offsetWidth;
         vizElement.style.width = '100%';
-        // Responsive height logic: Taller for mobile to prevent truncation
-        vizElement.style.height = (width > 800) ? '850px' : '1100px';
+        vizElement.style.height = (width > 800) ? '850px' : '1150px';
     }
-
-    fitDashboard();
-    window.onresize = fitDashboard;
-
+    resizeViz();
+    window.onresize = resizeViz;
     var scriptElement = document.createElement('script');
     scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
     vizElement.parentNode.insertBefore(scriptElement, vizElement);
 </script>
+</div>
 
 _A mobile-friendly interface featuring normalized 0–100 stress bars for Macro Stress and Sentiment. Developed as part of the **Lion City FinAI** framework._
 
