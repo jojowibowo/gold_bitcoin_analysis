@@ -1,70 +1,8 @@
-<style>
-  /* 1. Reset and Background */
-  body { 
-    background-color: #f4f7f6; 
-    font-family: 'Inter', -apple-system, sans-serif; 
-    color: #1a1c23;
-    margin: 0; padding: 0;
-  }
-  
-  /* 2. Professional Container */
-  .main-content { 
-    max-width: 1000px; 
-    margin: 0 auto; 
-    padding: 40px 20px; 
-  }
+# Gold & Bitcoin as Inflation Hedges  
 
-  /* 3. The "Hero" Card */
-  .hero-section {
-    background: linear-gradient(135deg, #00b894 0%, #0984e3 100%);
-    color: white;
-    padding: 60px 40px;
-    border-radius: 24px;
-    margin-bottom: 40px;
-    box-shadow: 0 20px 40px rgba(0, 184, 148, 0.2);
-  }
+### A Regime-Dependent Analysis for Singaporean Retail Investors  
 
-  /* 4. Modern Dashboard Card */
-  .card {
-    background: white;
-    border-radius: 20px;
-    padding: 24px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    margin-bottom: 30px;
-    border: 1px solid rgba(0,0,0,0.05);
-  }
-
-  /* 5. Clean Buttons */
-  .btn-primary {
-    background: #00b894;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: 0.3s;
-    display: inline-block;
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,184,148,0.3); }
-
-  /* 6. Typography */
-  h1 { font-size: 2.5rem; margin: 0; font-weight: 800; }
-  h2 { color: #2d3436; font-weight: 700; margin-top: 0; }
-</style>
-
-<div class="main-content">
-
-<div class="hero-section">
-  <h1>Lion City FinAI</h1>
-  <p>Gold & Bitcoin as Inflation Hedges: A Regime-Dependent AI Analysis</p>
-  <div style="margin-top: 20px;">
-    <a href="mailto:jojowibowo@proton.me" class="btn-primary">Contact Analyst</a>
-    <a href="https://www.linkedin.com/in/jojo-wibowo/" class="btn-primary" style="background: rgba(255,255,255,0.2); margin-left: 10px;">LinkedIn</a>
-  </div>
-</div>
-
-# Gold & Bitcoin as Inflation Hedges
-**Project by Jojo Wibowo**
+**Project by Jojo Wibowo**  
 
 ---
 
