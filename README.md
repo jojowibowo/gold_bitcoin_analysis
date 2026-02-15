@@ -1,30 +1,70 @@
 # **Project Title: AI-Driven Inflation Hedge Strategy for Singaporean Retail Investors (2026 Outlook)**
 
 
-## **The Business Problem:**
+## **Executive Summary**
 
-As part of **Lion City FinAI**, this project addresses the "Retail Dilemma": traditional inflation advice fails to account for how Gold and Bitcoin behave in different market regimes.
+Developed a regime-aware, AI-assisted decision-support framework for Lion City FinAI to help Singaporean retail investors evaluate gold and Bitcoin as inflation hedges. The project addresses the lack of clarity and conflicting narratives regarding these assets amid rising inflation uncertainty, providing a structured, data-driven alternative to simplistic hedging claims and static asset interpretations.
+
+
+## **The Business Problem**
+
+Singaporean retail investors struggle with fragmented and contradictory information when evaluating inflation hedges. Existing tools rely on isolated indicators and raw returns, failing to capture macroeconomic regime shifts or the conditional behavior of assets. This creates high cognitive load and misaligned analytical sophistication, hindering informed financial decision-making during periods of macro-financial stress.
 
     
-## **The Goal:**
+## **The Goal**
 
-To determine if Bitcoin or Gold serves as a better store of value against the Singapore Dollar (SGD) through 2026.
+The project aims to develop an interpretable, regime-based dashboard that clarifies when gold or Bitcoin function as effective inflation hedges. Key goals include constructing normalized 0–100 stress indices, distinguishing between macro-driven and sentiment-driven market regimes using machine learning, and delivering these insights through a mobile-friendly interface to enhance retail investor risk awareness and decision support.
 
     
-## **The Data Pipeline:**
+## **The Process**
     
--   **Timeframe:** 2017–2025 (Monthly & Weekly frequency).
+Integrated macroeconomic analysis and machine learning into an end-to-end workflow. I resampled eight years of daily data to a weekly frequency, applied Winsorization to manage outliers, and engineered features across five conceptual dimensions. Conducted correlation diagnostics and trained Random Forest models to identify regime-dependent relationships, translating these statistical insights into a functional dashboard.
         
--   **Features:** Integrated Singaporean CPI (Headline/Core), US Fed Funds Rate, DXY (Dollar Index), and the **Crypto Fear & Greed Index** for sentiment analysis.
-        
 
-## **Key Insights & Performance**
+## **Tools & Method**  
 
--   **Gold is a Macro-Stress Stabilizer:** It acts as a defensive hedge against currency stress and USD/SGD volatility, rather than just tracking CPI directly.
+### **A. Tools**
+
+-   **Programming Languages:** Python
     
--   **Bitcoin is Sentiment-Driven:** Weekly price movements are heavily influenced by investor mood. The **Fear & Greed Index** was the most important feature in the Bitcoin model, with an importance score of **0.3225**.
+-   **Data Manipulation & Math:** pandas, NumPy
     
--   **Model Success:** The **Logistic Regression** model achieved an accuracy of **~60%** and an F1-Score of **0.67** in predicting Bitcoin’s directional movement, providing a viable signal for tactical trading.
+-   **Machine Learning & Statistics:** scikit-learn, statsmodels
+    
+-   **Visualization:** matplotlib, seaborn, Plotly
+    
+-   **Data Sources:** Yahoo Finance, FRED, SingStat, MAS, Alternative.me
+    
+
+### **B. Methods**
+
+-   **Data Cleaning:** Winsorization (1st and 99th percentiles), Forward-filling (max 5-week gap)
+    
+-   **Preprocessing:** Weekly frequency resampling (Friday observations), Log return calculation
+    
+-   **Feature Engineering:** Lagged feature creation (t-1 to t-4 weeks), Period-over-period percentage changes (MoM, YoY)
+    
+-   **Analytical Techniques:** Pearson and Spearman correlation diagnostics, Time-series overlay analysis
+    
+-   **Modeling:** Random Forest regression, Time-based train-test splitting (70% training / 30% testing)
+    
+-   **Operationalization:** Percentile-based normalization (0–100 scaling), Regime classification
+
+
+## **The Output**
+
+Delivered a mobile-friendly dashboard using 0–100 normalized stress indices and regime signals derived from 410 observations. Analysis revealed gold lacks short-term inflation correlation (r=0.017), acting instead as a stress diversifier, while Bitcoin is sentiment-driven, with sentiment accounting for 50.5% of its top-feature importance. Investors should use gold defensively and Bitcoin tactically.
+
+
+## **Scope of Work/Achievements**
+
+-   Built an AI-assisted dashboard using 410 weekly observations to provide Singaporean retail investors with regime-aware inflation hedging insights.
+    
+-   Identified that sentiment variables drive 50.5% of Bitcoin's return behavior, enabling more accurate sentiment-conditional risk assessments for investors.
+    
+-   Developed normalized 0–100 stress indices for inflation and sentiment, reducing cognitive load for retail investors by simplifying signals.
+    
+-   Validated gold's role as a diversifying asset with a 0.017 correlation to headline CPI, clarifying its defensive utility.
 
 
 ## **Ethical Commitment**
