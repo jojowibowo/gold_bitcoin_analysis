@@ -6,7 +6,7 @@
 
 ## **Live Interactive Dashboard**  
 
-<div id='vizContainer' style='position: relative; width: 100%; display: flex; justify-content: center; background-color: #f9f9f9; padding: 20px 0;'>
+<div id='vizContainer' style='position: relative; width: 100%; aspect-ratio: 16 / 9; display: flex; justify-content: center; background-color: #f9f9f9; padding: 20px 0;'>
     <div class='tableauPlaceholder' id='viz1707000000000' style='position: relative; width: 100%; box-shadow: 0 4px 10px rgba(0,0,0,0.1);'>
         <object class='tableauViz' style='display:none;'>
             <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
