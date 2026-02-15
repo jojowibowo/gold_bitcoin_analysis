@@ -11,7 +11,3 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
   - jekyll-seo-tag
-
-# Chirpy requires specific timezone and pagination setup
-timezone: America/New_York # Change to your timezone
-paginate: 10
