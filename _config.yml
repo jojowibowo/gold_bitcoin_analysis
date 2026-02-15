@@ -1,5 +1,20 @@
-remote_theme: just-the-docs/just-the-docs
+# Site Settings
+title: My Blog
+description: Exploring ideas with Jekyll
+url: "https://yourname.github.io" # Replace with your URL
+baseurl: ""
+
+# Theme Settings
+remote_theme: mmistakes/minimal-mistakes
 plugins:
   - jekyll-remote-theme
-title: Project Docs
-description: Documentation made simple
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-include-cache
+
+# Plugin Configurations
+paginate: 5
+paginate_path: /page:num/
+
+# Theme Specific
+locale: "en-US"
