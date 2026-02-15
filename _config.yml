@@ -1,18 +1,17 @@
 # Site Settings
-title: My Blog
-description: Exploring ideas with Jekyll
+title: Tech Notes
+description: My personal knowledge base
 
 # Theme Settings
-remote_theme: mmistakes/minimal-mistakes
+remote_theme: cotes2020/jekyll-theme-chirpy
 plugins:
   - jekyll-remote-theme
-  - jekyll-paginate
+  - jekyll-gist
+  - jekyll-archives
   - jekyll-sitemap
-  - jekyll-include-cache
+  - jekyll-paginate
+  - jekyll-seo-tag
 
-# Plugin Configurations
-paginate: 5
-paginate_path: /page:num/
-
-# Theme Specific
-locale: "en-US"
+# Chirpy requires specific timezone and pagination setup
+timezone: America/New_York # Change to your timezone
+paginate: 10
