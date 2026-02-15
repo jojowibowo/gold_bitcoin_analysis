@@ -6,10 +6,8 @@
 
 ## **Live Interactive Dashboard**  
 
-
-
 <div id='vizContainer' style='position: relative; width: 100%; display: flex; justify-content: center; padding: 20px 0;'>
-    <div class='tableauPlaceholder' id='viz1707000000000' style='position: relative; width: 95%; max-width: 1000px;'>
+    <div class='tableauPlaceholder' id='viz1707000000000' style='position: relative; width: 100%; max-width: 1100px;'>
         <object class='tableauViz' style='display:none;'>
             <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
             <param name='embed_code_version' value='3' /> 
@@ -24,7 +22,6 @@
             <param name='display_count' value='yes' />
             <param name='language' value='en-US' />
             <param name='filter' value='publish=yes' />
-        </param>
         </object>
     </div>
 </div>
@@ -33,20 +30,23 @@
     var divElement = document.getElementById('viz1707000000000');
     var vizElement = divElement.getElementsByTagName('object')[0];
     
-    // This logic ensures the dashboard doesn't truncate
-    if ( divElement.offsetWidth > 800 ) { 
-        vizElement.style.minWidth='700px'; vizElement.style.maxWidth='1000px';
-        vizElement.style.width='100%'; vizElement.style.height='850px';
+    // 16:9 Ratio Logic: Height = Width * 0.5625
+    // We add +60px to account for the Tableau toolbar at the bottom
+    var calculatedHeight = (divElement.offsetWidth * 0.5625) + 60;
+    
+    if ( divElement.offsetWidth > 500 ) { 
+        vizElement.style.width = '100%';
+        vizElement.style.height = calculatedHeight + 'px';
     } else { 
-        vizElement.style.width='100%'; vizElement.style.height='1100px'; 
+        // On mobile, 16:9 is usually too small to read, so we use a taller ratio
+        vizElement.style.width = '100%';
+        vizElement.style.height = '1100px'; 
     }
     
     var scriptElement = document.createElement('script');
     scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
     vizElement.parentNode.insertBefore(scriptElement, vizElement);
 </script>
-
-
 
 _A mobile-friendly interface featuring normalized 0–100 stress bars for Macro Stress and Sentiment. Developed as part of the **Lion City FinAI** framework._
 
