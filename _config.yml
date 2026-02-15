@@ -1,1 +1,5 @@
-jekyll-theme-minimal-mistakes
+remote_theme: daattali/beautiful-jekyll
+plugins:
+  - jekyll-remote-theme
+title: My Portfolio
+description: Showcasing my work
