@@ -1,6 +1,10 @@
 # **Project Title: AI-Driven Inflation Hedge Strategy for Singaporean Retail Investors (2026 Outlook)**
 
 
+## **Dashboard**(https://public.tableau.com/views/LionCityFinAIInflationHedgeDashboard/AIInflationHedgeDashboard)  
+![Project Dashboard](visualizations/AI Inflation Hedge Dashboard.png)
+
+
 ## **Executive Summary**
 
 Developed a regime-aware, AI-assisted decision-support framework for Lion City FinAI to help Singaporean retail investors evaluate gold and Bitcoin as inflation hedges. The project addresses the lack of clarity and conflicting narratives regarding these assets amid rising inflation uncertainty, providing a structured, data-driven alternative to simplistic hedging claims and static asset interpretations.
