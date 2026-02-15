@@ -1,11 +1,1 @@
-remote_theme: cotes2020/jekyll-theme-chirpy
-
-plugins:
-  - jekyll-remote-theme
-
-title: Jojo’s Technical Notes
-tagline: A curated archive of software, data, and engineering insights
-description: Practical notes, experiments, and references on programming, data systems, and applied technology.
-
-author: Jojo
-lang: en
+theme: jekyll-theme-cayman
