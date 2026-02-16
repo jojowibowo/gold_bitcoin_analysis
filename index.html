@@ -156,7 +156,7 @@
             <div class="max-w-4xl">
                 <h2 class="text-xs font-black text-red-700 uppercase tracking-[0.2em] mb-4">Research Summary</h2>
                 <h3 class="text-4xl md:text-6xl font-black text-gray-900 leading-tight mb-6">
-                    Hedges are <span class="text-red-700 italic">Regime-Dependent</span>.
+                    Hedges are <span class="text-red-700 italic">Regime-Dependent</span>,<br>not Automatic.
                 </h3>
                 <p class="text-xl text-gray-600 leading-relaxed max-w-2xl">
                     Our 2026 research project debunks the "static hedge" narrative. Neither asset provides mechanical protection against Singapore's CPI. Instead, the results reveal assets that respond to global liquidity and currency stress.
@@ -196,7 +196,7 @@
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-gray-200 pb-8">
                 <div>
                     <h2 class="text-3xl font-black text-gray-900 uppercase tracking-tighter">Key Analytical Findings</h2>
-                    <p class="text-gray-500 mt-2 italic">Quantitative insights from project analysis.</p>
+                    <p class="text-gray-500 mt-2 italic">Quantitative insights from the finalized project analysis.</p>
                 </div>
                 <div class="flex bg-gray-100 p-1 rounded-xl">
                     <button id="tab-gold" onclick="updateView('gold')" class="px-6 py-2.5 rounded-lg text-sm font-bold active-gold flex items-center transition-all">
@@ -322,9 +322,15 @@
 
     </main>
 
-    <footer class="bg-gray-900 text-white py-12 px-6 text-center">
-        <h2 class="text-2xl font-black tracking-tighter uppercase mb-4">Lion City FinAI</h2>
-        <p class="text-gray-500 text-xs">© 2026 Strategic Review. Jojo Wibowo. Quantitative project results.</p>
+    <footer class="bg-gray-900 text-white py-20 px-6 text-center">
+        <div class="max-w-4xl mx-auto space-y-6">
+            <h2 class="text-2xl font-black tracking-tighter uppercase">Lion City FinAI</h2>
+            <p class="text-gray-500 text-sm">© 2026 Strategic Review. Jojo Wibowo. Quantitative results from finalized project data.</p>
+            <div class="flex justify-center space-x-4">
+                <span class="px-3 py-1 bg-gray-800 text-[10px] font-bold text-gray-400 rounded">N=410 WEEKS</span>
+                <span class="px-3 py-1 bg-gray-800 text-[10px] font-bold text-gray-400 rounded">ML RANDOM FOREST</span>
+            </div>
+        </div>
     </footer>
 
     <script>
@@ -462,31 +468,40 @@
         function runSimulation() {
             const stress = parseInt(document.getElementById('sim-stress').value);
             const sentiment = parseInt(document.getElementById('sim-sentiment').value);
+            
             document.getElementById('lbl-stress').innerText = stress;
             document.getElementById('lbl-sentiment').innerText = sentiment;
 
             const title = document.getElementById('res-title');
+            const desc = document.getElementById('res-desc');
             const badge = document.getElementById('res-badge');
             const icon = document.getElementById('res-icon');
 
             if (stress > 70) {
-                currentRegime = 'MacroStress';
                 title.innerText = "Crisis Regime";
-                badge.innerText = "BIAS: GOLD";
+                desc.innerText = "High macro stress triggers Gold's defensive stabilizer role. Prioritize capital preservation and currency-hedged assets.";
+                badge.innerText = "BIAS: GOLD (DEFENSIVE)";
                 badge.className = "px-4 py-1.5 bg-red-100 text-red-700 rounded-full text-[10px] font-black";
                 icon.innerHTML = '<i class="fa-solid fa-shield-halved"></i>';
                 icon.className = "text-6xl text-red-700 mb-6";
             } else if (sentiment > 65) {
-                currentRegime = 'HighSentiment';
                 title.innerText = "Growth Regime";
-                badge.innerText = "BIAS: BTC";
+                desc.innerText = "High sentiment and low stress favor risk assets. Bitcoin acts as a liquidity sponge for tactical accumulation in this regime.";
+                badge.innerText = "BIAS: BTC (TACTICAL)";
                 badge.className = "px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-[10px] font-black";
                 icon.innerHTML = '<i class="fa-solid fa-rocket"></i>';
                 icon.className = "text-6xl text-blue-700 mb-6";
+            } else if (sentiment < 30) {
+                title.innerText = "Panic Regime";
+                desc.innerText = "Extreme fear detected. Avoid high-volatility risk assets. Prioritize cash equivalents until sentiment stabilizes.";
+                badge.innerText = "BIAS: LIQUIDITY / CASH";
+                badge.className = "px-4 py-1.5 bg-gray-800 text-white rounded-full text-[10px] font-black";
+                icon.innerHTML = '<i class="fa-solid fa-vault"></i>';
+                icon.className = "text-6xl text-gray-800 mb-6";
             } else {
-                currentRegime = 'Neutral';
                 title.innerText = "Neutral Regime";
-                badge.innerText = "Neutral";
+                desc.innerText = "Indicators are balanced. Baseline diversification is advised. Monitor currency breakout signals.";
+                badge.innerText = "BIAS: NEUTRAL";
                 badge.className = "px-4 py-1.5 bg-gray-100 text-gray-600 rounded-full text-[10px] font-black";
                 icon.innerHTML = '<i class="fa-solid fa-scale-balanced"></i>';
                 icon.className = "text-6xl text-gray-300 mb-6";
