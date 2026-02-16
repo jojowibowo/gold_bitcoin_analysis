@@ -342,7 +342,7 @@
         const config = {
             gold: {
                 title: "Defensive Stabilizer",
-                desc: "Gold functions as a hedge against macro-uncertainty. In the Singaporean context, it protects capital when the SGD weakens against the Greenback during global stress events.",
+                desc: "Gold functions as a hedge against macro-uncertainty. It protects capital when SGD weakens.",
                 stat1: "USD/SGD (-0.316)",
                 stat2: "CPI Link (0.017)",
                 type: 'bar',
@@ -352,14 +352,13 @@
                         label: 'Correlation Coefficient',
                         data: [0.017, 0.034, -0.316],
                         backgroundColor: ['#003366', '#003366', '#C8102E'],
-                        borderRadius: 10,
-                        borderWidth: 0
+                        borderRadius: 10
                     }]
                 }
             },
             btc: {
                 title: "Sentiment Sponge",
-                desc: "Bitcoin movements are 47% explained by the <strong>Fear & Greed index</strong>. It acts as a sentiment-driven risk asset, showing zero protective link to local inflation fundamentals.",
+                desc: "Bitcoin movements track the Fear & Greed index, showing zero protective link to local inflation.",
                 stat1: "Sentiment (0.466)",
                 stat2: "CPI Link (0.042)",
                 type: 'doughnut',
@@ -368,8 +367,7 @@
                     datasets: [{
                         data: [47, 33, 15, 5],
                         backgroundColor: ['#003366', '#B8860B', '#C8102E', '#cbd5e1'],
-                        borderWidth: 0,
-                        hoverOffset: 20
+                        borderWidth: 0
                     }]
                 }
             }
@@ -445,7 +443,7 @@
             document.getElementById('tab-btc').className = asset === 'btc' ? "px-6 py-2.5 rounded-lg text-sm font-bold active-btc flex items-center" : "px-6 py-2.5 rounded-lg text-sm font-bold inactive flex items-center";
 
             document.getElementById('view-title').innerText = data.title;
-            document.getElementById('view-desc').innerText = data.desc;
+            document.getElementById('view-desc').innerHTML = data.desc;
             document.getElementById('stat-1').innerText = data.stat1;
             document.getElementById('stat-2').innerText = data.stat2;
 
@@ -459,10 +457,13 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: { display: data.type === 'doughnut', position: 'bottom' },
-                        tooltip: { backgroundColor: '#111827' }
+                        legend: { display: data.type === 'doughnut', position: 'bottom', labels: { font: { weight: 'bold' } } },
+                        tooltip: { backgroundColor: '#111827', padding: 15 }
                     },
-                    scales: data.type === 'bar' ? { y: { max: 1, min: -1 } } : {}
+                    scales: data.type === 'bar' ? {
+                        y: { max: 1, min: -1, ticks: { font: { weight: 'bold' } } },
+                        x: { grid: { display: false } }
+                    } : {}
                 }
             });
         }
