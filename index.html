@@ -342,32 +342,34 @@
         const config = {
             gold: {
                 title: "Defensive Stabilizer",
-                desc: "Gold functions as a hedge against macro-uncertainty. It protects capital when SGD weakens.",
+                desc: "Gold functions as a hedge against macro-uncertainty. In the Singaporean context, it protects capital when the SGD weakens against the Greenback during global stress events.",
                 stat1: "USD/SGD (-0.316)",
                 stat2: "CPI Link (0.017)",
                 type: 'bar',
                 data: {
                     labels: ['Headline CPI', 'Core CPI', 'USD/SGD (Inv)'],
                     datasets: [{
-                        label: 'Correlation',
+                        label: 'Correlation Coefficient',
                         data: [0.017, 0.034, -0.316],
                         backgroundColor: ['#003366', '#003366', '#C8102E'],
-                        borderRadius: 10
+                        borderRadius: 10,
+                        borderWidth: 0
                     }]
                 }
             },
             btc: {
                 title: "Sentiment Sponge",
-                desc: "Bitcoin movements track the Fear & Greed index, showing zero protective link to local inflation.",
+                desc: "Bitcoin movements are 47% explained by the <strong>Fear & Greed index</strong>. It acts as a sentiment-driven risk asset, showing zero protective link to local inflation fundamentals.",
                 stat1: "Sentiment (0.466)",
                 stat2: "CPI Link (0.042)",
                 type: 'doughnut',
                 data: {
-                    labels: ['Sentiment', 'Liquidity', 'Macro', 'Inflation'],
+                    labels: ['Sentiment (F&G)', 'Liquidity Lags', 'Macro Uncertainty', 'Inflation (CPI)'],
                     datasets: [{
                         data: [47, 33, 15, 5],
                         backgroundColor: ['#003366', '#B8860B', '#C8102E', '#cbd5e1'],
-                        borderWidth: 0
+                        borderWidth: 0,
+                        hoverOffset: 20
                     }]
                 }
             }
