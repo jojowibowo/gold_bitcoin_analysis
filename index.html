@@ -77,7 +77,7 @@
         }
 
         /* Custom Slider Styling */
-        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
+        input[type=range] { appearance: none; -webkit-appearance: none; width: 100%; background: transparent; }
         input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 8px; cursor: pointer; background: #cbd5e1; border-radius: 4px; }
         input[type=range]::-webkit-slider-thumb { height: 24px; width: 24px; border-radius: 50%; background: #ffffff; border: 3px solid var(--brand-blue); cursor: pointer; -webkit-appearance: none; margin-top: -8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
     </style>
@@ -168,7 +168,7 @@
                     <div class="text-3xl font-black text-yellow-700 mb-2">54%</div>
                     <h4 class="font-bold text-gray-900 mb-2">Currency Bridge</h4>
                     <p class="text-sm text-gray-500 leading-relaxed flex-grow">Gold performance is explained by <strong>USD/SGD</strong> volatility, acting as a defensive stabilizer.</p>
-                    <a href="#" onclick="biDeepLink('gold')" class="mt-6 text-[10px] font-black uppercase text-blue-900 flex items-center hover:text-red-700 transition">
+                    <a href="#" onclick="biDeepLink()" class="mt-6 text-[10px] font-black uppercase text-blue-900 flex items-center hover:text-red-700 transition">
                         Explore in Tableau <i class="fa-solid fa-arrow-right-long ml-2"></i>
                     </a>
                 </div>
@@ -176,7 +176,7 @@
                     <div class="text-3xl font-black text-blue-900 mb-2">47%</div>
                     <h4 class="font-bold text-gray-900 mb-2">Sentiment Risk</h4>
                     <p class="text-sm text-gray-500 leading-relaxed flex-grow">Bitcoin acts as a <strong>liquidity sponge</strong>. Movements track sentiment indices.</p>
-                    <a href="#" onclick="biDeepLink('btc')" class="mt-6 text-[10px] font-black uppercase text-blue-900 flex items-center hover:text-red-700 transition">
+                    <a href="#" onclick="biDeepLink()" class="mt-6 text-[10px] font-black uppercase text-blue-900 flex items-center hover:text-red-700 transition">
                         Explore in Tableau <i class="fa-solid fa-arrow-right-long ml-2"></i>
                     </a>
                 </div>
@@ -184,8 +184,8 @@
                     <div class="text-3xl font-black text-red-700 mb-2">0.017</div>
                     <h4 class="font-bold text-gray-900 mb-2">CPI Independence</h4>
                     <p class="text-sm text-gray-500 leading-relaxed flex-grow">A negligible statistical link to local Consumer Price Index fluctuations.</p>
-                    <a href="#" onclick="biDeepLink('overall')" class="mt-6 text-[10px] font-black uppercase text-blue-900 flex items-center hover:text-red-700 transition">
-                        View Full Report <i class="fa-solid fa-arrow-right-long ml-2"></i>
+                    <a href="#" onclick="biDeepLink()" class="mt-6 text-[10px] font-black uppercase text-blue-900 flex items-center hover:text-red-700 transition">
+                        Explore in Tableau <i class="fa-solid fa-arrow-right-long ml-2"></i>
                     </a>
                 </div>
             </div>
@@ -413,25 +413,29 @@
                 sidebar.classList.replace('sidebar-visible', 'sidebar-hidden');
             }
         }
-
-        function buildDeepLink({ reportId, asset, start, end, regime }) {
-            const baseUrl = `https://bi.example.com/report/${reportId}`;
-            const params = new URLSearchParams({
-                asset: asset || currentAsset,
-                start: start || '2025-01-01',
-                end: end || '2026-02-01',
-                regime: regime || currentRegime
-            });
-            return `${baseUrl}?${params.toString()}`;
+        function biDeepLink() {
+            const url = "https://public.tableau.com/app/profile/jojowibowo/viz/LionCityFinAIInflationHedgeDashboard/AIInflationHedgeDashboard";
+            biTelemetry('kpi-deep-link', { regime: currentRegime });
+            window.open(url, '_blank');
         }
 
-        function biDeepLink(assetType) {
-            const url = buildDeepLink({ 
-                reportId: 'abc123', 
-                asset: assetType === 'overall' ? 'portfolio' : assetType 
-            });
-            biTelemetry('kpi-deep-link', { target: assetType, regime: currentRegime });
-            window.open(url, '_blank');
+        // --- JS ---
+        function loadTableauViz() {
+            const divElement = document.getElementById('tableauViz');
+            const vizElement = divElement.getElementsByTagName('object')[0];
+
+            function resizeViz() {
+                const container = document.getElementById('vizContainer');
+                vizElement.style.width = container.clientWidth + 'px';
+                vizElement.style.height = container.clientHeight + 'px';
+            }
+
+            resizeViz();
+            window.addEventListener('resize', resizeViz);
+
+            const scriptElement = document.createElement('script');
+            scriptElement.src = "https://public.tableau.com/javascripts/api/viz_v1.js";
+            vizElement.parentNode.insertBefore(scriptElement, vizElement);
         }
 
         // --- Core UI Logic ---
