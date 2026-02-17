@@ -70,6 +70,14 @@
         .card-accent-blue { border-top: 6px solid var(--brand-blue); }
         .card-accent-red { border-top: 6px solid var(--brand-red); }
 
+        .sidebar-transition {
+          transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+        }
+
+        /* overlay visible state helper (your markup toggles pointer-events via classes) */
+        #sidebar-overlay.sidebar-visible { opacity: 1; pointer-events: auto; }
+        #sidebar-overlay.sidebar-hidden  { opacity: 0; pointer-events: none; }
+
         /* Accessible Focus States */
         button:focus-visible, a:focus-visible {
             outline: 3px solid var(--brand-blue);
@@ -85,31 +93,73 @@
 <body class="selection:bg-blue-100">
 
     <!-- BI Slide-over (Desktop only logic applied via JS) -->
-    <div id="bi-sidebar" class="fixed top-0 right-0 h-full w-full md:w-[600px] bg-white shadow-2xl sidebar-hidden flex flex-col">
-        <div class="p-6 bg-[#003366] text-white flex justify-between items-center">
-            <div>
-                <h2 class="font-bold text-lg">Tableau Analytic Environment</h2>
-                <p class="text-xs text-blue-200 uppercase tracking-widest">Live Report Workspace</p>
-            </div>
-            <button onclick="toggleBISidebar(false)" aria-label="Close analytic view" class="hover:bg-blue-800 p-2 rounded-lg">
-                <i class="fa-solid fa-xmark text-xl"></i>
-            </button>
-        </div>
-        <div id="bi-embed-container" class="flex-grow flex items-center justify-center bg-gray-50 relative">
-            <!-- Simulated Loading State -->
-            <div id="bi-loader" class="text-center space-y-4">
-                <i class="fa-solid fa-circle-notch fa-spin text-4xl text-blue-900"></i>
-                <p class="text-sm font-bold text-gray-500">Exchanging Tokens...</p>
-            </div>
-            <!-- Mock Embed View -->
-            <div id="bi-mock-ui" class="hidden w-full h-full flex flex-col p-8">
-                <div class="border-2 border-dashed border-gray-200 rounded-2xl flex-grow flex items-center justify-center text-center p-10">
-                    <div>
-                        <i class="fa-solid fa-chart-area text-6xl text-gray-200 mb-4"></i>
-                        <p class="text-gray-400 font-medium">Tableau Visualizations would mount here via SDK.</p>
-                        <a href="https://bi.example.com/report/abc123" target="_blank" class="mt-4 inline-block text-blue-900 font-bold underline">Open Full Report</a>
-                    </div>
+    <div id="bi-sidebar" class="fixed inset-0 z-50 pointer-events-none">
+        <!-- Backdrop -->
+        <div id="sidebar-overlay" class="absolute inset-0 bg-slate-900/40 opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+        
+        <!-- Sidebar Panel -->
+        <div id="sidebar-panel" class="absolute right-0 top-0 h-full w-full max-w-2xl bg-white shadow-2xl sidebar-transition translate-x-full pointer-events-auto flex flex-col">
+            <div class="p-6 bg-[#003366] text-white flex justify-between items-center">
+                <div>
+                    <h2 class="font-bold text-lg">Interactive BI Workspace</h2>
+                    <p class="text-xs text-blue-200 uppercase tracking-widest">Lion City Strategic Intelligence</p>
                 </div>
+                <button onclick="toggleBISidebar(false)" aria-label="Close analytic view" class="hover:bg-blue-800 p-2 rounded-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <div class="flex-grow overflow-y-auto p-8 bg-slate-50">
+                <!-- Tableau Integration Container -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                    <div class="p-6 border-b border-slate-100">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Live Tableau Feed</span>
+                        </div>
+                        <h3 class="font-bold text-lg">AI Inflation Hedge Dashboard</h3>
+                    </div>
+                    
+                    <!-- TABLEAU EMBED BLOCK START -->
+                    <div class="card p-4">
+                        <div id='vizContainer' style='width: 100%;'>
+                            <div class='tableauPlaceholder' id='viz1707000000000' style='position: relative; width: 100%;'>
+                                <object class='tableauViz' style='display:none;'>
+                                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+                                    <param name='name' value='LionCityFinAIInflationHedgeDashboard/AIInflationHedgeDashboard' />
+                                    <param name='toolbar' value='yes' />
+                                    <param name='display_static_image' value='no' />
+                                    <param name='display_spinner' value='yes' />
+                                </object>
+                            </div>
+                        </div>
+
+                        <script type='text/javascript'>
+                            (function() {
+                                var divElement = document.getElementById('viz1707000000000');
+                                var vizElement = divElement.getElementsByTagName('object')[0];
+                                function resizeViz() {
+                                    var width = divElement.offsetWidth;
+                                    vizElement.style.width = '100%';
+                                    // Adjusted height for sidebar layout
+                                    vizElement.style.height = (width > 500) ? '850px' : '600px'; 
+                                }
+                                resizeViz();
+                                window.addEventListener('resize', resizeViz);
+                                var scriptElement = document.createElement('script');
+                                scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+                                vizElement.parentNode.insertBefore(scriptElement, vizElement);
+                            })();
+                        </script>
+                    </div>
+                    <!-- TABLEAU EMBED BLOCK END -->
+                </div>
+            </div>
+            
+            <div class="p-8 border-t border-slate-100 bg-white">
+                <button class="w-full py-4 bg-[#003366] text-white font-bold rounded-lg hover:bg-slate-800 transition-colors flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-file-pdf"></i> EXPORT STRATEGIC PDF
+                </button>
             </div>
         </div>
     </div>
@@ -385,58 +435,45 @@
             });
         }
 
-        function toggleBISidebar(show) {
-            const sidebar = document.getElementById('bi-sidebar');
-            const loader = document.getElementById('bi-loader');
-            const mockUi = document.getElementById('bi-mock-ui');
-            
-            if (show) {
-                // Mobile check
-                if (window.innerWidth < 768) {
-                    window.open(buildDeepLink({ reportId: 'abc123' }), '_blank');
-                    return;
-                }
-                
-                sidebar.classList.replace('sidebar-hidden', 'sidebar-visible');
-                biTelemetry('header-embed', { asset: currentAsset, regime: currentRegime });
-                
-                // Fetch token simulation
-                loader.classList.remove('hidden');
-                mockUi.classList.add('hidden');
-                
-                fetchEmbedToken('abc123').then(res => {
-                    loader.classList.add('hidden');
-                    mockUi.classList.remove('hidden');
-                    console.log('Mounting report with token:', res.token);
-                });
-            } else {
-                sidebar.classList.replace('sidebar-visible', 'sidebar-hidden');
-            }
+        function toggleBISidebar(open) {
+          const sidebar = document.getElementById("bi-sidebar");
+          const panel = document.getElementById("sidebar-panel");
+          const overlay = document.getElementById("sidebar-overlay");
+
+          if (!sidebar || !panel || !overlay) return;
+
+          if (open) {
+            sidebar.classList.remove("pointer-events-none");
+            panel.classList.remove("translate-x-full");
+            overlay.classList.add("sidebar-visible");
+          } else {
+            sidebar.classList.add("pointer-events-none");
+            panel.classList.add("translate-x-full");
+            overlay.classList.remove("sidebar-visible");
+          }
         }
+
         function biDeepLink() {
             const url = "https://public.tableau.com/app/profile/jojowibowo/viz/LionCityFinAIInflationHedgeDashboard/AIInflationHedgeDashboard";
             biTelemetry('kpi-deep-link', { regime: currentRegime });
             window.open(url, '_blank');
         }
 
+        document.addEventListener('DOMContentLoaded', function () {
+          const openBtn = document.getElementById('open-bi');
+          if (openBtn) openBtn.addEventListener('click', () => toggleBISidebar(true));
+
+          // close button inside the new sidebar
+          const closeBtn = document.getElementById('close-bi');
+          if (closeBtn) closeBtn.addEventListener('click', () => toggleBISidebar(false));
+
+          // overlay click closes
+          const overlay = document.getElementById('sidebar-overlay');
+          if (overlay) overlay.addEventListener('click', () => toggleBISidebar(false));
+        });
+
         // --- JS ---
-        function loadTableauViz() {
-            const divElement = document.getElementById('tableauViz');
-            const vizElement = divElement.getElementsByTagName('object')[0];
 
-            function resizeViz() {
-                const container = document.getElementById('vizContainer');
-                vizElement.style.width = container.clientWidth + 'px';
-                vizElement.style.height = container.clientHeight + 'px';
-            }
-
-            resizeViz();
-            window.addEventListener('resize', resizeViz);
-
-            const scriptElement = document.createElement('script');
-            scriptElement.src = "https://public.tableau.com/javascripts/api/viz_v1.js";
-            vizElement.parentNode.insertBefore(scriptElement, vizElement);
-        }
 
         // --- Core UI Logic ---
         function updateView(asset) {
