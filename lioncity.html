@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lion City Strategy 2026: Gold & Bitcoin Analysis</title>
+    <!-- Local Tailwind CSS (built via npm run build) -->
+    <link rel="stylesheet" href="dist/styles.css">
+    <!-- Local Chart.js -->
+    <script src="dist/chart.umd.min.js"></script>
+
+    <!-- Chosen Palette: Strategic Harmony (Color-Blind Friendly) -->
+    <!-- Accent Red: #C8102E | Accent Gold: #B8860B | Accent Blue: #003366 | BG: #FDFCFB -->
+
+    <!-- Application Structure Plan: 
+         - Integrated BI Layer: Persistent Header CTA and KPI-level deep links.
+         - Asset Explorer: Project results for Gold and Bitcoin.
+         - Strategy Engine: Interactive Regime Simulator.
+         - Embed Logic: Desktop slide-over for "Tableau" workflows.
+    -->
+
+    <!-- Visualization & Content Choices:
+         - Gold Bar Chart: Findings on CPI vs FX correlation.
+         - Bitcoin Doughnut: Machine Learning driver importance (Sentiment focus).
+         - BI Deep-Link Contract: Links prefilled with {asset, regime, date} parameters.
+         - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+
+    <style>
+        :root {
+            --brand-red: #C8102E;
+            --brand-gold: #B8860B;
+            --brand-blue: #003366;
+            --bg-light: #FDFCFB;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-light);
+            color: #1a1a1a;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Chart constraints */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 350px;
+            margin: 0 auto;
+        }
+
+        /* BI Side Overlay */
+        #bi-sidebar {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+        }
+
+        .sidebar-hidden { transform: translateX(100%); }
+        .sidebar-visible { transform: translateX(0); }
+
+        .active-gold { background-color: var(--brand-gold); color: white; border-color: var(--brand-gold); }
+        .active-btc { background-color: var(--brand-blue); color: white; border-color: var(--brand-blue); }
+        .inactive { background-color: #f1f1f1; color: #666; border-color: #ddd; }
+
+        .card-accent-gold { border-top: 6px solid var(--brand-gold); }
+        .card-accent-blue { border-top: 6px solid var(--brand-blue); }
+        .card-accent-red { border-top: 6px solid var(--brand-red); }
+
+        .sidebar-transition {
+          transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+        }
+
+        /* overlay visible state helper (your markup toggles pointer-events via classes) */
+        #sidebar-overlay.sidebar-visible { opacity: 1; pointer-events: auto; }
+        #sidebar-overlay.sidebar-hidden  { opacity: 0; pointer-events: none; }
+
+        /* Accessible Focus States */
+        button:focus-visible, a:focus-visible {
+            outline: 3px solid var(--brand-blue);
+            outline-offset: 2px;
+        }
+
+        /* Custom Slider Styling */
+        input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; background: transparent; }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 8px; cursor: pointer; background: #cbd5e1; border-radius: 4px; }
+        input[type=range]::-webkit-slider-thumb { height: 24px; width: 24px; border-radius: 50%; background: #ffffff; border: 3px solid var(--brand-blue); cursor: pointer; -webkit-appearance: none; margin-top: -8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="selection:bg-blue-100">
+
+    <!-- BI Slide-over (Desktop only logic applied via JS) -->
+    <div id="bi-sidebar" class="fixed inset-0 z-50 pointer-events-none">
+        <!-- Backdrop -->
+        <div id="sidebar-overlay" class="absolute inset-0 bg-slate-900/40 opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+
+        <!-- Sidebar Panel -->
+        <div id="sidebar-panel" class="absolute right-0 top-0 h-full w-full max-w-2xl bg-white shadow-2xl sidebar-transition translate-x-full pointer-events-auto flex flex-col">
+            <div class="p-6 bg-[#003366] text-white flex justify-between items-center">
+                <div>
+                    <h2 class="font-bold text-lg">Interactive BI Workspace</h2>
+                    <p class="text-xs text-blue-200 uppercase tracking-widest">Lion City Strategic Intelligence</p>
+                </div>
+                <button onclick="toggleBISidebar(false)" aria-label="Close analytic view" class="hover:bg-blue-800 p-2 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="1em" height="1em"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc. --><path fill="currentColor" d="M55.1 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L147.2 256 9.9 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192.5 301.3 329.9 438.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.8 256 375.1 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192.5 210.7 55.1 73.4z"/></svg>
+                </button>
+            </div>
+
+            <div class="flex-grow overflow-y-auto p-8 bg-slate-50">
+                <!-- Tableau Integration Container -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                    <div class="p-6 border-b border-slate-100">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Live Tableau Feed</span>
+                        </div>
+                        <h3 class="font-bold text-lg">AI Inflation Hedge Dashboard</h3>
+                    </div>
+
+                    <!-- TABLEAU EMBED BLOCK START -->
+                    <div class="card p-4">
+                        <div id='vizContainer' style='width: 100%;'>
+                            <div class='tableauPlaceholder' id='viz1707000000000' style='position: relative; width: 100%;'>
+                                <object class='tableauViz' style='display:none;'>
+                                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+                                    <param name='name' value='LionCityFinAIInflationHedgeDashboard/AIInflationHedgeDashboard' />
+                                    <param name='toolbar' value='yes' />
+                                    <param name='display_static_image' value='no' />
+                                    <param name='display_spinner' value='yes' />
+                                </object>
+                            </div>
+                        </div>
+
+                        <script type='text/javascript'>
+                            (function() {
+                                var divElement = document.getElementById('viz1707000000000');
+                                var vizElement = divElement.getElementsByTagName('object')[0];
+                                function resizeViz() {
+                                    var width = divElement.offsetWidth;
+                                    vizElement.style.width = '100%';
+                                    // Adjusted height for sidebar layout
+                                    vizElement.style.height = (width > 500) ? '850px' : '600px'; 
+                                }
+                                resizeViz();
+                                window.addEventListener('resize', resizeViz);
+                                var scriptElement = document.createElement('script');
+                                scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+                                vizElement.parentNode.insertBefore(scriptElement, vizElement);
+                            })();
+                        </script>
+                    </div>
+                    <!-- TABLEAU EMBED BLOCK END -->
+                </div>
+            </div>
+
+            <div class="p-8 border-t border-slate-100 bg-white">
+                <a href="https://jojowibowo.github.io/gold_bitcoin_analysis/reports/gold_bitcoin_analysis.pdf">
+                    <button class="w-full py-4 bg-[#003366] text-white font-bold rounded-lg hover:bg-slate-800 transition-colors flex items-center justify-center gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="1em" height="1em"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc. --><path fill="currentColor" d="M96 0C60.7 0 32 28.7 32 64l0 384c0 35.3 28.7 64 64 64l80 0 0-112c0-35.3 28.7-64 64-64l176 0 0-165.5c0-17-6.7-33.3-18.7-45.3L290.7 18.7C278.7 6.7 262.5 0 245.5 0L96 0zM357.5 176L264 176c-13.3 0-24-10.7-24-24L240 58.5 357.5 176zM240 380c-11 0-20 9-20 20l0 128c0 11 9 20 20 20s20-9 20-20l0-28 12 0c33.1 0 60-26.9 60-60s-26.9-60-60-60l-32 0zm32 80l-12 0 0-40 12 0c11 0 20 9 20 20s-9 20-20 20zm96-80c-11 0-20 9-20 20l0 128c0 11 9 20 20 20l32 0c28.7 0 52-23.3 52-52l0-64c0-28.7-23.3-52-52-52l-32 0zm20 128l0-88 12 0c6.6 0 12 5.4 12 12l0 64c0 6.6-5.4 12-12 12l-12 0zm88-108l0 128c0 11 9 20 20 20s20-9 20-20l0-44 28 0c11 0 20-9 20-20s-9-20-20-20l-28 0 0-24 28 0c11 0 20-9 20-20s-9-20-20-20l-48 0c-11 0-20 9-20 20z"/></svg>
+                        EXPORT STRATEGIC PDF
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <div class="w-10 h-10 rounded-lg flex items-center justify-center">
+                    </div>
+                <div>
+                    <h1 class="font-bold text-lg text-[#003366] leading-none">Gold and Bitcoin as Inflation Hedges</h1>
+                    <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1 font-semibold">A Regime-Dependent, Data-Driven Analysis for Singaporean Retail Investors</p>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-6">
+                <nav class="hidden lg:flex space-x-8 text-xs font-bold uppercase tracking-widest text-gray-400">
+                    <a href="#summary" class="hover:text-red-700 transition">The Myth</a>
+                    <a href="#analysis" class="hover:text-red-700 transition">Findings</a>
+                    <a href="#simulator" class="hover:text-red-700 transition">Simulator</a>
+                </nav>
+                <div class="h-6 w-[1px] bg-gray-200 hidden lg:block"></div>
+                <button id="open-bi" aria-label="Open in Tableau" class="bg-[#003366] text-white px-5 py-2.5 rounded-lg text-xs font-black uppercase tracking-wider hover:bg-red-700 transition flex items-center shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="1em" height="1em" class="mr-2"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc. --><path fill="currentColor" d="M512.4 240l-176 0c-17.7 0-32-14.3-32-32l0-176c0-17.7 14.4-32.2 31.9-29.9 107 14.2 191.8 99 206 206 2.3 17.5-12.2 31.9-29.9 31.9zM222.6 37.2c18.1-3.8 33.8 11 33.8 29.5l0 197.3c0 5.6 2 11 5.5 15.3L394 438.7c11.7 14.1 9.2 35.4-6.9 44.1-34.1 18.6-73.2 29.2-114.7 29.2-132.5 0-240-107.5-240-240 0-115.5 81.5-211.9 190.2-234.8zM477.8 288l64 0c18.5 0 33.3 15.7 29.5 33.8-10.2 48.4-35 91.4-69.6 124.2-12.3 11.7-31.6 9.2-42.4-3.9L374.9 340.4c-17.3-20.9-2.4-52.4 24.6-52.4l78.2 0z"/></svg> Open in Tableau
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-12 space-y-24">
+
+        <!-- Hero: The Project Result -->
+        <section id="summary" class="space-y-12">
+            <div class="max-w-4xl">
+                <h2 class="text-xs font-black text-red-700 uppercase tracking-[0.2em] mb-4">Research Summary</h2>
+                <h3 class="text-4xl md:text-6xl font-black text-gray-900 leading-tight mb-6">
+                    Hedges are <span class="text-red-700 italic">Regime-Dependent</span>,<br>not Automatic.
+                </h3>
+                <p class="text-xl text-gray-600 leading-relaxed max-w-2xl">
+                    Our 2026 research project debunks the "static hedge" narrative. Neither asset provides mechanical protection against Singapore's CPI. Instead, the results reveal assets that respond to global liquidity and currency stress.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 card-accent-gold flex flex-col">
+                    <div class="text-3xl font-black text-yellow-700 mb-2">54%</div>
+                    <h4 class="font-bold text-gray-900 mb-2">Currency Bridge</h4>
+                    <p class="text-sm text-gray-500 leading-relaxed flex-grow">Gold performance is explained by <strong>USD/SGD</strong> volatility, acting as a defensive stabilizer.</p>
+                    <a href="#" onclick="biDeepLink()" class="mt-6 text-[10px] font-black uppercase text-blue-900 flex items-center hover:text-red-700 transition">
+                        Explore in Tableau <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor" class="ml-2"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc. --><path fill="currentColor" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-105.4 105.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
+                    </a>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 card-accent-blue flex flex-col">
+                    <div class="text-3xl font-black text-blue-900 mb-2">47%</div>
+                    <h4 class="font-bold text-gray-900 mb-2">Sentiment Risk</h4>
+                    <p class="text-sm text-gray-500 leading-relaxed flex-grow">Bitcoin acts as a <strong>liquidity sponge</strong>. Movements track sentiment indices.</p>
+                    <a href="#" onclick="biDeepLink()" class="mt-6 text-[10px] font-black uppercase text-blue-900 flex items-center hover:text-red-700 transition">
+                        Explore in Tableau <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor" class="ml-2"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc. --><path fill="currentColor" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-105.4 105.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
+                    </a>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 card-accent-red flex flex-col">
+                    <div class="text-3xl font-black text-red-700 mb-2">0.017</div>
+                    <h4 class="font-bold text-gray-900 mb-2">CPI Independence</h4>
+                    <p class="text-sm text-gray-500 leading-relaxed flex-grow">A negligible statistical link to local Consumer Price Index fluctuations.</p>
+                    <a href="/reports/gold_bitcoin_analysis.pdf#page=30" onclick="biDeepLink()" class="mt-6 text-[10px] font-black uppercase text-blue-900 flex items-center hover:text-red-700 transition">
+                        View the Report <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor" class="ml-2"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc. --><path fill="currentColor" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-105.4 105.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analysis Dashboard -->
+        <section id="analysis" class="scroll-mt-24 space-y-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-gray-200 pb-8">
+                <div>
+                    <h2 class="text-3xl font-black text-gray-900 uppercase tracking-tighter">Key Analytical Findings</h2>
+                    <p class="text-gray-500 mt-2 italic">Quantitative insights from the finalized project analysis.</p>
+                </div>
+                <div class="flex bg-gray-100 p-1 rounded-xl">
+                    <button id="tab-gold" onclick="updateView('gold')" class="px-6 py-2.5 rounded-lg text-sm font-bold active-gold flex items-center transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" class="mr-2"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc. --><path fill="currentColor" d="M128 96l0-16c0-44.2 86-80 192-80S512 35.8 512 80l0 16c0 30.6-41.3 57.2-102 70.7-2.4-2.8-4.9-5.5-7.4-8-15.5-15.3-35.5-26.9-56.4-35.5-41.9-17.5-96.5-27.1-154.2-27.1-21.9 0-43.3 1.4-63.8 4.1-.2-1.3-.2-2.7-.2-4.1zM432 353l0-46.2c15.1-3.9 29.3-8.5 42.2-13.9 13.2-5.5 26.1-12.2 37.8-20.3l0 15.4c0 26.8-31.5 50.5-80 65zm0-96l0-33c0-4.5-.4-8.8-1-13 15.5-3.9 30-8.6 43.2-14.2s26.1-12.2 37.8-20.3l0 15.4c0 26.8-31.5 50.5-80 65zM0 240l0-16c0-44.2 86-80 192-80s192 35.8 192 80l0 16c0 44.2-86 80-192 80S0 284.2 0 240zm384 96c0 44.2-86 80-192 80S0 380.2 0 336l0-15.4c11.6 8.1 24.5 14.7 37.8 20.3 41.9 17.5 96.5 27.1 154.2 27.1s112.3-9.7 154.2-27.1c13.2-5.5 26.1-12.2 37.8-20.3l0 15.4zm0 80.6l0 15.4c0 44.2-86 80-192 80S0 476.2 0 432l0-15.4c11.6 8.1 24.5 14.7 37.8 20.3 41.9 17.5 96.5 27.1 154.2 27.1s112.3-9.7 154.2-27.1c13.2-5.5 26.1-12.2 37.8-20.3z"/></svg> GOLD
+                    </button>
+                    <button id="tab-btc" onclick="updateView('btc')" class="px-6 py-2.5 rounded-lg text-sm font-bold inactive flex items-center transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" class="mr-2"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc. --><path fill="currentColor" d="M8 256a248 248 0 1 1 496 0 248 248 0 1 1 -496 0zm354.3-35.3c4.9-33-20.2-50.7-54.6-62.6l11.1-44.7-27.2-6.8-10.9 43.5c-7.2-1.8-14.5-3.5-21.8-5.1l10.9-43.8-27.2-6.8-11.2 44.7c-5.9-1.3-11.7-2.7-17.4-4.1l0-.1-37.5-9.4-7.2 29.1s20.2 4.6 19.8 4.9c11 2.8 13 10 12.7 15.8l-12.7 50.9c.8 .2 1.7 .5 2.8 .9-.9-.2-1.9-.5-2.9-.7l-17.8 71.3c-1.3 3.3-4.8 8.4-12.5 6.5 .3 .4-19.8-4.9-19.8-4.9l-13.5 31.1 35.4 8.8c6.6 1.7 13 3.4 19.4 5l-11.3 45.2 27.2 6.8 11.2-44.7c7.2 2 14.4 3.8 21.7 5.6l-11.1 44.5 27.2 6.8 11.3-45.1c46.4 8.8 81.3 5.2 96-36.7 11.8-33.8-.6-53.3-25-66 17.8-4.1 31.2-15.8 34.7-39.9zm-62.2 87.2c-8.4 33.8-65.3 15.5-83.8 10.9l14.9-59.9c18.4 4.6 77.6 13.7 68.8 49zm8.4-87.7c-7.7 30.7-55 15.1-70.4 11.3l13.5-54.3c15.4 3.8 64.8 11 56.8 43z"/></svg> BITCOIN
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-[2.5rem] border border-gray-200 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+                <div class="lg:col-span-7 p-8 md:p-12 bg-gray-50 flex flex-col justify-center">
+                    <div class="chart-container">
+                        <canvas id="assetChart"></canvas>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 p-8 md:p-12 space-y-10 flex flex-col justify-center">
+                    <div>
+                        <h3 id="view-title" class="text-2xl font-black text-gray-900 mb-4 tracking-tight uppercase">Defensive Stabilizer</h3>
+                        <p id="view-desc" class="text-gray-600 leading-relaxed">Gold functions as a hedge against macro-uncertainty.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="p-5 bg-gray-50 rounded-xl flex items-center justify-between border-l-4 border-yellow-600">
+                            <span class="text-xs font-black text-gray-400 uppercase tracking-widest">Primary Driver</span>
+                            <span id="stat-1" class="text-lg font-black text-gray-900">USD/SGD (-0.316)</span>
+                        </div>
+                        <div class="p-5 bg-gray-50 rounded-xl flex items-center justify-between border-l-4 border-gray-300">
+                            <span class="text-xs font-black text-gray-400 uppercase tracking-widest">CPI Correlation</span>
+                            <span id="stat-2" class="text-lg font-black text-gray-900">0.017</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Regime Simulator -->
+        <section id="simulator" class="scroll-mt-24">
+            <div class="bg-[#003366] rounded-[3rem] p-8 md:p-16 text-white shadow-2xl relative overflow-hidden">
+                <div class="absolute -bottom-10 -right-10 opacity-10 pointer-events-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20em" height="20em"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc. --><path fill="currentColor" d="M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm50.7-186.9L162.4 380.6c-19.4 7.5-38.5-11.6-31-31l55.5-144.3c3.3-8.5 9.9-15.1 18.4-18.4l144.3-55.5c19.4-7.5 38.5 11.6 31 31L325.1 306.7c-3.2 8.5-9.9 15.1-18.4 18.4zM288 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>
+                </div>
+
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20">
+                    <div class="space-y-10">
+                        <div>
+                            <h2 class="text-4xl font-black mb-4">Actionable Framework</h2>
+                            <p class="text-blue-200 leading-relaxed">
+                                Our project concludes that strategy depends on two factors: <strong>Macro Stress</strong> and <strong>Sentiment</strong>. Use this tool to simulate the recommended allocation bias.
+                            </p>
+                        </div>
+
+                        <div class="space-y-8">
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-end">
+                                    <label class="text-xs font-black tracking-widest text-blue-300 uppercase">Macro Stress Level</label>
+                                    <span id="lbl-stress" class="text-3xl font-black">50</span>
+                                </div>
+                                <input type="range" id="sim-stress" min="0" max="100" value="50">
+                                <div class="flex justify-between text-[10px] font-bold text-blue-400/60 uppercase">
+                                    <span>Market Calm</span>
+                                    <span>Crisis Regime (>70)</span>
+                                </div>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-end">
+                                    <label class="text-xs font-black tracking-widest text-blue-300 uppercase">Fear & Greed Index</label>
+                                    <span id="lbl-sentiment" class="text-3xl font-black">50</span>
+                                </div>
+                                <input type="range" id="sim-sentiment" min="0" max="100" value="50">
+                                <div class="flex justify-between text-[10px] font-bold text-blue-400/60 uppercase">
+                                    <span>Extreme Fear</span>
+                                    <span>Extreme Greed</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Card -->
+                    <div class="bg-white rounded-3xl p-10 text-gray-900 shadow-inner flex flex-col justify-center">
+                        <div id="res-icon" class="text-6xl text-gray-300 mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="1em" height="1em"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc. --><path fill="currentColor" d="M384 32l128 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L398.4 96c-5.2 25.8-22.9 47.1-46.4 57.3l0 294.7 160 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-384 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l160 0 0-294.7c-23.5-10.3-41.2-31.6-46.4-57.3L128 96c-17.7 0-32-14.3-32-32s14.3-32 32-32l128 0c14.6-19.4 37.8-32 64-32s49.4 12.6 64 32zm55.6 288L584.4 320 512 195.8 439.6 320zM512 416c-62.9 0-115.2-34-126-78.9-2.6-11 1-22.3 6.7-32.1l95.2-163.2c5-8.6 14.2-13.8 24.1-13.8s19.1 5.3 24.1 13.8l95.2 163.2c5.7 9.8 9.3 21.1 6.7 32.1-10.8 44.8-63.1 78.9-126 78.9zM126.8 195.8L54.4 320 199.3 320 126.8 195.8zM.9 337.1c-2.6-11 1-22.3 6.7-32.1l95.2-163.2c5-8.6 14.2-13.8 24.1-13.8s19.1 5.3 24.1 13.8l95.2 163.2c5.7 9.8 9.3 21.1 6.7 32.1-10.8 44.8-63.1 78.9-126 78.9S11.7 382 .9 337.1z"/></svg>
+                        </div>
+                        <h4 id="res-title" class="text-2xl font-black mb-4 uppercase tracking-tight">Neutral Regime</h4>
+                        <p id="res-desc" class="text-gray-500 text-sm leading-relaxed mb-8">
+                            Indicators are balanced. Maintain baseline diversification. Focus on currency movements and global liquidity signals.
+                        </p>
+
+                        <div class="pt-6 border-t border-gray-100 flex items-center justify-between">
+                            <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Strategy Bias</span>
+                            <span id="res-badge" class="px-4 py-1.5 bg-gray-100 text-gray-600 rounded-full text-[10px] font-black uppercase">Neutral</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2026 Scenarios -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="p-8 bg-white border border-gray-100 rounded-2xl shadow-sm card-accent-red">
+                <div class="w-12 h-12 bg-red-50 text-red-700 rounded-xl flex items-center justify-center mb-6 text-xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc. --><path fill="currentColor" d="M256 0c14.7 0 28.2 8.1 35.2 21l216 400c6.7 12.4 6.4 27.4-.8 39.5S486.1 480 472 480L40 480c-14.1 0-27.2-7.4-34.4-19.5s-7.5-27.1-.8-39.5l216-400c7-12.9 20.5-21 35.2-21zm0 352a32 32 0 1 0 0 64 32 32 0 1 0 0-64zm0-192c-18.2 0-32.7 15.5-31.4 33.7l7.4 104c.9 12.5 11.4 22.3 23.9 22.3 12.6 0 23-9.7 23.9-22.3l7.4-104c1.3-18.2-13.1-33.7-31.4-33.7z"/></svg>
+                </div>
+                <h5 class="font-black text-gray-900 mb-3 text-lg uppercase">1. Stagflation</h5>
+                <p class="text-sm text-gray-500 leading-relaxed">High stress + weak currency. Gold becomes the primary pillar for capital preservation.</p>
+            </div>
+            <div class="p-8 bg-white border border-gray-100 rounded-2xl shadow-sm card-accent-blue">
+                <div class="w-12 h-12 bg-blue-50 text-blue-700 rounded-xl flex items-center justify-center mb-6 text-xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc. --><path fill="currentColor" d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64L0 400c0 44.2 35.8 80 80 80l400 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 416c-8.8 0-16-7.2-16-16L64 64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7 262.6 153.4c-12.5-12.5-32.8-12.5-45.3 0l-96 96c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l73.4-73.4 57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z"/></svg>
+                </div>
+                <h5 class="font-black text-gray-900 mb-3 text-lg uppercase">2. Policy Easing</h5>
+                <p class="text-sm text-gray-500 leading-relaxed">Rising sentiment + low stress. Bitcoin acts as a liquidity sponge for tactical growth.</p>
+            </div>
+            <div class="p-8 bg-white border border-gray-100 rounded-2xl shadow-sm card-accent-gold">
+                <div class="w-12 h-12 bg-yellow-50 text-yellow-700 rounded-xl flex items-center justify-center mb-6 text-xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc. --><path fill="currentColor" d="M403.8 34.4c12-5 25.7-2.2 34.9 6.9l64 64c6 6 9.4 14.1 9.4 22.6s-3.4 16.6-9.4 22.6l-64 64c-9.2 9.2-22.9 11.9-34.9 6.9S384 204.9 384 192l0-32-32 0c-10.1 0-19.6 4.7-25.6 12.8l-32.4 43.2-40-53.3 21.2-28.3C293.3 110.2 321.8 96 352 96l32 0 0-32c0-12.9 7.8-24.6 19.8-29.6zM154 296l40 53.3-21.2 28.3C154.7 401.8 126.2 416 96 416l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c10.1 0 19.6-4.7 25.6-12.8L154 296zM438.6 470.6c-9.2 9.2-22.9 11.9-34.9 6.9S384 460.9 384 448l0-32-32 0c-30.2 0-58.7-14.2-76.8-38.4L121.6 172.8c-6-8.1-15.5-12.8-25.6-12.8l-64 0c-17.7 0-32-14.3-32-32S14.3 96 32 96l64 0c30.2 0 58.7 14.2 76.8 38.4L326.4 339.2c6 8.1 15.5 12.8 25.6 12.8l32 0 0-32c0-12.9 7.8-24.6 19.8-29.6s25.7-2.2 34.9 6.9l64 64c6 6 9.4 14.1 9.4 22.6s-3.4 16.6-9.4 22.6l-64 64z"/></svg>
+                </div>
+                <h5 class="font-black text-gray-900 mb-3 text-lg uppercase">3. Volatility</h5>
+                <p class="text-sm text-gray-500 leading-relaxed">Mixed signals. The project prioritizes dynamic regime identification over static holding.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-white py-20 px-6 text-center">
+        <div class="max-w-4xl mx-auto space-y-6">
+            <h2 class="text-2xl font-black tracking-tighter uppercase">Lion City FinAI</h2>
+            <p class="text-gray-500 text-sm">© 2026 Strategic Review. Jojo Wibowo. Quantitative results from finalized project data.</p>
+            <div class="flex justify-center space-x-4">
+                <span class="px-3 py-1 bg-gray-800 text-[10px] font-bold text-gray-400 rounded">N=410 WEEKS</span>
+                <span class="px-3 py-1 bg-gray-800 text-[10px] font-bold text-gray-400 rounded">ML RANDOM FOREST</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Inline JavaScript -->
+    <script>
+        // --- State ---
+        let currentAsset = 'gold';
+        let currentRegime = 'Neutral';
+        let chartInstance = null;
+
+        const config = {
+            gold: {
+                title: "Defensive Stabilizer",
+                desc: "Gold functions as a hedge against macro-uncertainty. It protects capital when SGD weakens.",
+                stat1: "USD/SGD (-0.316)",
+                stat2: "CPI Link (0.017)",
+                type: 'bar',
+                data: {
+                    labels: ['Headline CPI', 'Core CPI', 'USD/SGD (Inv)'],
+                    datasets: [{
+                        label: 'Correlation Coefficient',
+                        data: [0.017, 0.034, -0.316],
+                        backgroundColor: ['#003366', '#003366', '#C8102E'],
+                        borderRadius: 10
+                    }]
+                }
+            },
+            btc: {
+                title: "Sentiment Sponge",
+                desc: "Bitcoin movements track the Fear & Greed index, showing zero protective link to local inflation.",
+                stat1: "Sentiment (0.466)",
+                stat2: "CPI Link (0.042)",
+                type: 'doughnut',
+                data: {
+                    labels: ['Sentiment (F&G)', 'Liquidity Lags', 'Macro Uncertainty', 'Inflation (CPI)'],
+                    datasets: [{
+                        data: [47, 33, 15, 5],
+                        backgroundColor: ['#003366', '#B8860B', '#C8102E', '#cbd5e1'],
+                        borderWidth: 0
+                    }]
+                }
+            }
+        };
+
+        // --- BI Logic ---
+        function biTelemetry(type, params) {
+            console.log(`[BI-TELEMETRY] Click Event: ${type}`, params);
+        }
+
+        async function fetchEmbedToken(reportId) {
+            return new Promise(resolve => {
+                setTimeout(() => resolve({ token: 'mock-jwt-' + Math.random(), expires: 600 }), 800);
+            });
+        }
+
+        function toggleBISidebar(open) {
+          const sidebar = document.getElementById("bi-sidebar");
+          const panel = document.getElementById("sidebar-panel");
+          const overlay = document.getElementById("sidebar-overlay");
+
+          if (!sidebar || !panel || !overlay) return;
+
+          if (open) {
+            sidebar.classList.remove("pointer-events-none");
+            panel.classList.remove("translate-x-full");
+            overlay.classList.add("sidebar-visible");
+          } else {
+            sidebar.classList.add("pointer-events-none");
+            panel.classList.add("translate-x-full");
+            overlay.classList.remove("sidebar-visible");
+          }
+        }
+
+        function biDeepLink() {
+            const url = "https://public.tableau.com/app/profile/jojowibowo/viz/LionCityFinAIInflationHedgeDashboard/AIInflationHedgeDashboard";
+            biTelemetry('kpi-deep-link', { regime: currentRegime });
+            window.open(url, '_blank');
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+          const openBtn = document.getElementById('open-bi');
+          if (openBtn) openBtn.addEventListener('click', () => toggleBISidebar(true));
+
+          const closeBtn = document.getElementById('close-bi');
+          if (closeBtn) closeBtn.addEventListener('click', () => toggleBISidebar(false));
+
+          const overlay = document.getElementById("sidebar-overlay");
+          if (overlay) overlay.addEventListener('click', () => toggleBISidebar(false));
+        });
+
+        // --- Core UI Logic ---
+        function updateView(asset) {
+            currentAsset = asset;
+            const data = config[asset];
+
+            document.getElementById('tab-gold').className = asset === 'gold' ? "px-6 py-2.5 rounded-lg text-sm font-bold active-gold flex items-center" : "px-6 py-2.5 rounded-lg text-sm font-bold inactive flex items-center";
+            document.getElementById('tab-btc').className = asset === 'btc' ? "px-6 py-2.5 rounded-lg text-sm font-bold active-btc flex items-center" : "px-6 py-2.5 rounded-lg text-sm font-bold inactive flex items-center";
+
+            document.getElementById('view-title').innerText = data.title;
+            document.getElementById('view-desc').innerHTML = data.desc;
+            document.getElementById('stat-1').innerText = data.stat1;
+            document.getElementById('stat-2').innerText = data.stat2;
+
+            const ctx = document.getElementById('assetChart').getContext('2d');
+            if (chartInstance) chartInstance.destroy();
+
+            chartInstance = new Chart(ctx, {
+                type: data.type,
+                data: data.data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: data.type === 'doughnut', position: 'bottom', labels: { font: { weight: 'bold' } } },
+                        tooltip: { backgroundColor: '#111827', padding: 15 }
+                    },
+                    scales: data.type === 'bar' ? {
+                        y: { max: 1, min: -1, ticks: { font: { weight: 'bold' } } },
+                        x: { grid: { display: false } }
+                    } : {}
+                }
+            });
+        }
+
+        function runSimulation() {
+            const stress = parseInt(document.getElementById('sim-stress').value);
+            const sentiment = parseInt(document.getElementById('sim-sentiment').value);
+
+            document.getElementById('lbl-stress').innerText = stress;
+            document.getElementById('lbl-sentiment').innerText = sentiment;
+
+            const title = document.getElementById('res-title');
+            const desc = document.getElementById('res-desc');
+            const badge = document.getElementById('res-badge');
+            const icon = document.getElementById('res-icon');
+
+            if (stress > 70) {
+                title.innerText = "Crisis Regime";
+                desc.innerText = "High macro stress triggers Gold's defensive stabilizer role. Prioritize capital preservation and currency-hedged assets.";
+                badge.innerText = "BIAS: GOLD (DEFENSIVE)";
+                badge.className = "px-4 py-1.5 bg-red-100 text-red-700 rounded-full text-[10px] font-black";
+                icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc. --><path fill="currentColor" d="M256 0c4.6 0 9.2 1 13.4 2.9L457.8 82.8c22 9.3 38.4 31 38.3 57.2-.5 99.2-41.3 280.7-213.6 363.2-16.7 8-36.1 8-52.8 0-172.4-82.5-213.1-264-213.6-363.2-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.9 1 251.4 0 256 0zm0 66.8l0 378.1c138-66.8 175.1-214.8 176-303.4l-176-74.6 0 0z"/></svg>';
+                icon.className = "text-6xl text-red-700 mb-6";
+            } else if (sentiment > 65) {
+                title.innerText = "Growth Regime";
+                desc.innerText = "High sentiment and low stress favor risk assets. Bitcoin acts as a liquidity sponge for tactical accumulation in this regime.";
+                badge.innerText = "BIAS: BTC (TACTICAL)";
+                badge.className = "px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-[10px] font-black";
+                icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc. --><path fill="currentColor" d="M128 320L24.5 320c-24.9 0-40.2-27.1-27.4-48.5L50 183.3C58.7 168.8 74.3 160 91.2 160l95 0c76.1-128.9 189.6-135.4 265.5-124.3 12.8 1.9 22.8 11.9 24.6 24.6 11.1 75.9 4.6 189.4-124.3 265.5l0 95c0 16.9-8.8 32.5-23.3 41.2l-88.2 52.9c-21.3 12.8-48.5-2.6-48.5-27.4L192 384c0-35.3-28.7-64-64-64l-.1 0zM400 160a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z"/></svg>';
+                icon.className = "text-6xl text-blue-700 mb-6";
+            } else if (sentiment < 30) {
+                title.innerText = "Panic Regime";
+                desc.innerText = "Extreme fear detected. Avoid high-volatility risk assets. Prioritize cash equivalents until sentiment stabilizes.";
+                badge.innerText = "BIAS: LIQUIDITY / CASH";
+                badge.className = "px-4 py-1.5 bg-gray-800 text-white rounded-full text-[10px] font-black";
+                icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc. --><path fill="currentColor" d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64 0 17.7 14.3 32 32 32s32-14.3 32-32l256 0c0 17.7 14.3 32 32 32s32-14.3 32-32c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zM256 256a64 64 0 1 0 -128 0 64 64 0 1 0 128 0zM64 256a128 128 0 1 1 256 0 128 128 0 1 1 -256 0zm384-48c0 17.8-9.7 33.3-24 41.6l0 78.4c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-78.4c-14.3-8.3-24-23.8-24-41.6 0-26.5 21.5-48 48-48s48 21.5 48 48z"/></svg>';
+                icon.className = "text-6xl text-gray-800 mb-6";
+            } else {
+                title.innerText = "Neutral Regime";
+                desc.innerText = "Indicators are balanced. Baseline diversification is advised. Monitor currency breakout signals.";
+                badge.innerText = "BIAS: NEUTRAL";
+                badge.className = "px-4 py-1.5 bg-gray-100 text-gray-600 rounded-full text-[10px] font-black";
+                icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="1em" height="1em"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc. --><path fill="currentColor" d="M384 32l128 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L398.4 96c-5.2 25.8-22.9 47.1-46.4 57.3l0 294.7 160 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-384 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l160 0 0-294.7c-23.5-10.3-41.2-31.6-46.4-57.3L128 96c-17.7 0-32-14.3-32-32s14.3-32 32-32l128 0c14.6-19.4 37.8-32 64-32s49.4 12.6 64 32zm55.6 288L584.4 320 512 195.8 439.6 320zM512 416c-62.9 0-115.2-34-126-78.9-2.6-11 1-22.3 6.7-32.1l95.2-163.2c5-8.6 14.2-13.8 24.1-13.8s19.1 5.3 24.1 13.8l95.2 163.2c5.7 9.8 9.3 21.1 6.7 32.1-10.8 44.8-63.1 78.9-126 78.9zM126.8 195.8L54.4 320 199.3 320 126.8 195.8zM.9 337.1c-2.6-11 1-22.3 6.7-32.1l95.2-163.2c5-8.6 14.2-13.8 24.1-13.8s19.1 5.3 24.1 13.8l95.2 163.2c5.7 9.8 9.3 21.1 6.7 32.1-10.8 44.8-63.1 78.9-126 78.9S11.7 382 .9 337.1z"/></svg>';
+                icon.className = "text-6xl text-gray-300 mb-6";
+            }
+        }
+
+        // --- Init ---
+        document.getElementById('open-bi').addEventListener('click', () => toggleBISidebar(true));
+        document.getElementById('sim-stress').addEventListener('input', runSimulation);
+        document.getElementById('sim-sentiment').addEventListener('input', runSimulation);
+
+        window.onload = () => {
+            updateView('gold');
+            runSimulation();
+        };
+    </script>
+</body>
+</html>
