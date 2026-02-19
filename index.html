@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lion City Strategy 2026: Gold & Bitcoin Analysis</title>
-    <!-- External Libraries (Local) -->
     <!-- Tailwind CSS -->
-    <script src="assets/js/tailwindcss.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chart.js -->
-    <script src="assets/js/chart.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- FontAwesome -->
-    <link rel="stylesheet" href="assets/js/all.min.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <!-- Chosen Palette: Strategic Harmony (Color-Blind Friendly) -->
     <!-- Accent Red: #C8102E | Accent Gold: #B8860B | Accent Blue: #003366 | BG: #FDFCFB -->
 
@@ -97,7 +96,7 @@
     <div id="bi-sidebar" class="fixed inset-0 z-50 pointer-events-none">
         <!-- Backdrop -->
         <div id="sidebar-overlay" class="absolute inset-0 bg-slate-900/40 opacity-0 transition-opacity duration-300 pointer-events-none"></div>
-        
+
         <!-- Sidebar Panel -->
         <div id="sidebar-panel" class="absolute right-0 top-0 h-full w-full max-w-2xl bg-white shadow-2xl sidebar-transition translate-x-full pointer-events-auto flex flex-col">
             <div class="p-6 bg-[#003366] text-white flex justify-between items-center">
@@ -109,7 +108,7 @@
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-            
+
             <div class="flex-grow overflow-y-auto p-8 bg-slate-50">
                 <!-- Tableau Integration Container -->
                 <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
@@ -120,7 +119,7 @@
                         </div>
                         <h3 class="font-bold text-lg">AI Inflation Hedge Dashboard</h3>
                     </div>
-                    
+
                     <!-- TABLEAU EMBED BLOCK START -->
                     <div class="card p-4">
                         <div id='vizContainer' style='width: 100%;'>
@@ -156,14 +155,13 @@
                     <!-- TABLEAU EMBED BLOCK END -->
                 </div>
             </div>
-            
+
             <div class="p-8 border-t border-slate-100 bg-white">
-                <a href="https://jojowibowo.github.io/gold_bitcoin_analysis/reports/gold_bitcoin_analysis.pdf">
-                    <button class="w-full py-4 bg-[#003366] text-white font-bold rounded-lg hover:bg-slate-800 transition-colors flex items-center justify-center gap-3">
-                        <i class="fa-solid fa-file-pdf"></i>
-                        EXPORT STRATEGIC PDF
-                    </button>
-                </a>
+                <button class="w-full py-4 bg-[#003366] text-white font-bold rounded-lg hover:bg-slate-800 transition-colors flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-file-pdf">
+                    <a href="https://jojowibowo.github.io/gold_bitcoin_analysis/reports/gold_bitcoin_analysis.pdf">EXPORT STRATEGIC PDF</a>
+                    </i>
+                </button>
             </div>
         </div>
     </div>
@@ -188,7 +186,7 @@
                     <p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1 font-semibold">A Regime-Dependent, Data-Driven Analysis for Singaporean Retail Investors</p>
                 </div>
             </div>
-            
+
             <div class="flex items-center space-x-6">
                 <nav class="hidden lg:flex space-x-8 text-xs font-bold uppercase tracking-widest text-gray-400">
                     <a href="#summary" class="hover:text-red-700 transition">The Myth</a>
@@ -238,7 +236,7 @@
                     <div class="text-3xl font-black text-red-700 mb-2">0.017</div>
                     <h4 class="font-bold text-gray-900 mb-2">CPI Independence</h4>
                     <p class="text-sm text-gray-500 leading-relaxed flex-grow">A negligible statistical link to local Consumer Price Index fluctuations.</p>
-                    <a href="https://jojowibowo.github.io/gold_bitcoin_analysis/reports/gold_bitcoin_analysis.pdf#page=30" class="mt-6 text-[10px] font-black uppercase text-blue-900 flex items-center hover:text-red-700 transition">
+                    <a href="/reports/gold_bitcoin_analysis.pdf#page=30" onclick="biDeepLink()" class="mt-6 text-[10px] font-black uppercase text-blue-900 flex items-center hover:text-red-700 transition">
                         View the Report <i class="fa-solid fa-arrow-right-long ml-2"></i>
                     </a>
                 </div>
@@ -339,7 +337,7 @@
                         <p id="res-desc" class="text-gray-500 text-sm leading-relaxed mb-8">
                             Indicators are balanced. Maintain baseline diversification. Focus on currency movements and global liquidity signals.
                         </p>
-                        
+
                         <div class="pt-6 border-t border-gray-100 flex items-center justify-between">
                             <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Strategy Bias</span>
                             <span id="res-badge" class="px-4 py-1.5 bg-gray-100 text-gray-600 rounded-full text-[10px] font-black uppercase">Neutral</span>
@@ -392,7 +390,7 @@
         let currentAsset = 'gold';
         let currentRegime = 'Neutral';
         let chartInstance = null;
-        
+
         const config = {
             gold: {
                 title: "Defensive Stabilizer",
@@ -483,7 +481,7 @@
         function updateView(asset) {
             currentAsset = asset;
             const data = config[asset];
-            
+
             document.getElementById('tab-gold').className = asset === 'gold' ? "px-6 py-2.5 rounded-lg text-sm font-bold active-gold flex items-center" : "px-6 py-2.5 rounded-lg text-sm font-bold inactive flex items-center";
             document.getElementById('tab-btc').className = asset === 'btc' ? "px-6 py-2.5 rounded-lg text-sm font-bold active-btc flex items-center" : "px-6 py-2.5 rounded-lg text-sm font-bold inactive flex items-center";
 
@@ -516,7 +514,7 @@
         function runSimulation() {
             const stress = parseInt(document.getElementById('sim-stress').value);
             const sentiment = parseInt(document.getElementById('sim-sentiment').value);
-            
+
             document.getElementById('lbl-stress').innerText = stress;
             document.getElementById('lbl-sentiment').innerText = sentiment;
 
@@ -560,7 +558,7 @@
         document.getElementById('open-bi').addEventListener('click', () => toggleBISidebar(true));
         document.getElementById('sim-stress').addEventListener('input', runSimulation);
         document.getElementById('sim-sentiment').addEventListener('input', runSimulation);
-        
+
         window.onload = () => {
             updateView('gold');
             runSimulation();
