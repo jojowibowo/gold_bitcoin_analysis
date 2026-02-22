@@ -9,8 +9,8 @@ const projects = {
         subtitle: 'A Regime-Dependent Analysis for Singaporean Retail Investors',
         author: 'Jojo Wibowo',
         image: 'https://jojowibowo.github.io/gold_bitcoin_analysis/visualisations/generated_image_d6bdd84c.png?w=400&h=250&fit=crop',
-        videoUrl: 'https://example.com/gold_bitcoin_dashboard.mp4',
-        videoPoster: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=450&fit=crop',
+        videoUrl: ' ',
+        videoPoster: 'https://jojowibowo.github.io/gold_bitcoin_analysis/visualisations/AI Inflation Hedge Dashboard.png?w=800&h=450&fit=crop',
         videoCaption: 'A mobile-friendly interface featuring normalized 0–100 stress bars for Macro Stress and Sentiment. Developed as part of the <strong>Lion City FinAI</strong> framework.',
         dashboardUrl: 'https://jojowibowo.github.io/gold_bitcoin_analysis/lioncity.html',
         
