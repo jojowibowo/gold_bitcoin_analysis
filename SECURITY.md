@@ -61,4 +61,4 @@ If you discover a security vulnerability, please report it via the project's iss
 
 ### Last Updated
 
-2026-02-14
+2026-02-22
