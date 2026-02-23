@@ -224,7 +224,10 @@ function renderProjectSummary(projectId) {
                 ${getIcon('document')} Presentation Deck
             </a>
         </div>
-        
+
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin: 2rem 0;">
+        </div>
+
         <h3>Project Summary</h3>
         <p>${project.summary}</p>
         
