@@ -216,7 +216,7 @@ function renderProjectSummary(projectId) {
     contentEl.innerHTML = `
         ${videoHtml}
         
-        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin: 2rem 0;">
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin: 10rem 0;">
             <a href="${project.dashboardUrl}" target="_blank" rel="noopener noreferrer" class="dashboard-link">
                 ${getIcon('external')} Open Dashboard
             </a>
@@ -224,10 +224,7 @@ function renderProjectSummary(projectId) {
                 ${getIcon('document')} Presentation Deck
             </a>
         </div>
-
-        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin: 2rem 0;">
-        </div>
-
+        
         <h3>Project Summary</h3>
         <p>${project.summary}</p>
         
