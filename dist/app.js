@@ -216,7 +216,7 @@ function renderProjectSummary(projectId) {
     contentEl.innerHTML = `
         ${videoHtml}
         
-        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 10rem;">
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
             <a href="${project.dashboardUrl}" target="_blank" rel="noopener noreferrer" class="dashboard-link">
                 ${getIcon('external')} Open Dashboard
             </a>
@@ -225,7 +225,7 @@ function renderProjectSummary(projectId) {
             </a>
         </div>
         
-        <h3>Project Summary</h3>
+        <h3 style="margin-top: 10rem;">Project Summary</h3>
         <p>${project.summary}</p>
         
         <h3>The Problem</h3>
