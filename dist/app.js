@@ -11,7 +11,7 @@ const projects = {
         image: 'https://jojowibowo.github.io/gold_bitcoin_analysis/visualisations/generated_image_d6bdd84c.png?w=400&h=250&fit=crop',
         videoUrl: ' ',
         videoPoster: 'https://jojowibowo.github.io/gold_bitcoin_analysis/visualisations/AI Inflation Hedge Dashboard.png?w=800&h=450&fit=crop',
-        videoCaption: 'A mobile-friendly interface featuring normalized 0\-100 stress bars for Macro Stress and Sentiment. Developed as part of the <strong>Lion City FinAI</strong> framework.',
+        videoCaption: 'A mobile-friendly interface featuring normalized 0–100 stress bars for Macro Stress and Sentiment. Developed as part of the <strong>Lion City FinAI</strong> framework.',
         dashboardUrl: 'https://jojowibowo.github.io/gold_bitcoin_analysis/lioncity.html',
         presentationUrl: 'https://jojowibowo.github.io/gold_bitcoin_analysis/reports/gold_bitcoin_presentation.pdf',
         
@@ -216,14 +216,14 @@ function renderProjectSummary(projectId) {
     contentEl.innerHTML = `
         ${videoHtml}
         
-        <a href="${project.dashboardUrl}" target="_blank" rel="noopener noreferrer" class="dashboard-link">
-            ${getIcon('external')} Open Dashboard
-        </a>
-        <br>
-        <a href="${project.presentationUrl}" target="_blank" rel="noopener noreferrer" class="dashboard-link">
-            ${getIcon('document')} Presentation Deck
-        </a>
-        <br><br>
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin: 2rem 0;">
+            <a href="${project.dashboardUrl}" target="_blank" rel="noopener noreferrer" class="dashboard-link">
+                ${getIcon('external')} Open Dashboard
+            </a>
+            <a href="${project.presentationUrl}" target="_blank" rel="noopener noreferrer" class="dashboard-link">
+                ${getIcon('document')} Presentation Deck
+            </a>
+        </div>
         
         <h3>Project Summary</h3>
         <p>${project.summary}</p>
