@@ -216,7 +216,7 @@ function renderProjectSummary(projectId) {
     contentEl.innerHTML = `
         ${videoHtml}
         
-        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin: 10rem 0;">
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 10rem;">
             <a href="${project.dashboardUrl}" target="_blank" rel="noopener noreferrer" class="dashboard-link">
                 ${getIcon('external')} Open Dashboard
             </a>
