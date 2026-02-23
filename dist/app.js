@@ -11,8 +11,9 @@ const projects = {
         image: 'https://jojowibowo.github.io/gold_bitcoin_analysis/visualisations/generated_image_d6bdd84c.png?w=400&h=250&fit=crop',
         videoUrl: ' ',
         videoPoster: 'https://jojowibowo.github.io/gold_bitcoin_analysis/visualisations/AI Inflation Hedge Dashboard.png?w=800&h=450&fit=crop',
-        videoCaption: 'A mobile-friendly interface featuring normalized 0–100 stress bars for Macro Stress and Sentiment. Developed as part of the <strong>Lion City FinAI</strong> framework.',
+        videoCaption: 'A mobile-friendly interface featuring normalized 0\-100 stress bars for Macro Stress and Sentiment. Developed as part of the <strong>Lion City FinAI</strong> framework.',
         dashboardUrl: 'https://jojowibowo.github.io/gold_bitcoin_analysis/lioncity.html',
+        presentationUrl: 'https://jojowibowo.github.io/gold_bitcoin_analysis/reports/gold_bitcoin_presentation.pdf',
         
         // Project Summary section
         summary: `Developed a regime-aware, AI-assisted decision-support framework to help Singaporean retail investors navigate the "Retail Dilemma." Traditional inflation hedges often fail during macro-financial stress; this project provides a data-driven alternative to static investment claims.`,
@@ -67,6 +68,7 @@ const projects = {
         videoPoster: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop',
         videoCaption: 'Real-time sentiment analytics dashboard with NLP-powered news analysis and social media trend monitoring.',
         dashboardUrl: 'https://dashboard.example.com/beta',
+        presentationUrl: 'https://jojowibowo.github.io/gold_bitcoin_analysis/reports/sentiment_analytics_presentation1.pdf',
         
         // Project Summary section
         summary: `A comprehensive market sentiment analytics platform that processes news headlines, social media feeds, and trading volume to generate real-time mood indicators for global financial markets. Built using Python and modern ML techniques to help traders make informed decisions.`,
@@ -115,7 +117,8 @@ function getIcon(iconName) {
     const icons = {
         'chart': '<svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg>',
         'external': '<svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>',
-        'link': '<svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>'
+        'link': '<svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>',
+        'document': '<svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>'
     };
     return icons[iconName] || '';
 }
@@ -216,7 +219,11 @@ function renderProjectSummary(projectId) {
         <a href="${project.dashboardUrl}" target="_blank" rel="noopener noreferrer" class="dashboard-link">
             ${getIcon('external')} Open Dashboard
         </a>
-        <br>
+        
+        <a href="${project.presentationUrl}" target="_blank" rel="noopener noreferrer" class="dashboard-link">
+            ${getIcon('document')} Presentation Deck
+        </a>
+        
         
         <h3>Project Summary</h3>
         <p>${project.summary}</p>
