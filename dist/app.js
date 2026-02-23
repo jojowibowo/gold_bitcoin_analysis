@@ -225,7 +225,7 @@ function renderProjectSummary(projectId) {
             </a>
         </div>
         
-        <h3 style="margin-top: 2rem;">Project Summary</h3>
+        <h3>Project Summary</h3>
         <p>${project.summary}</p>
         
         <h3>The Problem</h3>
