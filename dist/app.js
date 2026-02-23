@@ -219,11 +219,11 @@ function renderProjectSummary(projectId) {
         <a href="${project.dashboardUrl}" target="_blank" rel="noopener noreferrer" class="dashboard-link">
             ${getIcon('external')} Open Dashboard
         </a>
-        
+        <br>
         <a href="${project.presentationUrl}" target="_blank" rel="noopener noreferrer" class="dashboard-link">
             ${getIcon('document')} Presentation Deck
         </a>
-        
+        <br><br>
         
         <h3>Project Summary</h3>
         <p>${project.summary}</p>
