@@ -116,13 +116,13 @@
             background: var(--card-dark);
             border-color: var(--border-dark);
         }
-        body.dark .cv-job-title, body.dark .cv-project-title {
+        body.dark .cv-job-title, body.dark .cv-project-title, body.dark .cv-education-title {
             color: var(--text-light);
         }
-        body.dark .cv-job-company, body.dark .cv-project-company {
+        body.dark .cv-job-company, body.dark .cv-project-company, body.dark .cv-education-details {
             color: var(--brand-blue-dark);
         }
-        body.dark .cv-job-date, body.dark .cv-project-date {
+        body.dark .cv-job-date, body.dark .cv-project-date, body.dark .cv-education-date {
             color: var(--text-muted);
         }
         body.dark .cv-job li, body.dark .cv-project li {
@@ -131,15 +131,6 @@
         body.dark .cv-education-item {
             background: var(--card-dark);
             border-color: var(--border-dark);
-        }
-        body.dark .cv-education-title {
-            color: var(--text-light);
-        }
-        body.dark .cv-education-details {
-            color: var(--brand-blue-dark);
-        }
-        body.dark .cv-education-date {
-            color: var(--text-muted);
         }
         body.dark .cv-certification {
             background: var(--card-dark);
@@ -416,15 +407,6 @@
             margin-bottom: 1rem;
         }
         
-        .cv-section-content p em {
-            font-size: 0.875rem;
-            color: var(--text-gray);
-        }
-        
-        body.dark .cv-section-content p em {
-            color: var(--text-muted);
-        }
-        
         .cv-skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -476,7 +458,7 @@
             margin-bottom: 1rem;
         }
         
-        .cv-job-header, .cv-project-header {
+        .cv-job-header, .cv-project-header, .cv-education-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
@@ -485,18 +467,18 @@
             gap: 0.5rem;
         }
         
-        .cv-job-title, .cv-project-title {
+        .cv-job-title, .cv-project-title, .cv-education-title {
             font-weight: 700;
             color: var(--text-dark);
         }
         
-        .cv-job-company, .cv-project-company {
+        .cv-job-company, .cv-project-company, .cv-education-details {
             font-size: 0.875rem;
             color: var(--brand-blue);
             font-weight: 600;
         }
         
-        .cv-job-date, .cv-project-date {
+        .cv-job-date, .cv-project-date, .cv-education-date {
             font-size: 0.75rem;
             color: var(--text-gray);
             font-weight: 600;
@@ -532,32 +514,6 @@
             border-radius: 0.75rem;
             border: 1px solid #e5e7eb;
             margin-bottom: 0.75rem;
-        }
-        
-        .cv-education-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 0.5rem;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        
-        .cv-education-title {
-            font-weight: 700;
-            color: var(--text-dark);
-        }
-        
-        .cv-education-details {
-            font-size: 0.875rem;
-            color: var(--brand-blue);
-            margin-top: 0.25rem;
-        }
-        
-        .cv-education-date {
-            font-size: 0.75rem;
-            color: var(--text-gray);
-            font-weight: 600;
         }
         
         .cv-certifications-list {
@@ -1244,22 +1200,43 @@
             <!-- Education -->
             <div class="cv-section">
                 <h2 class="cv-section-title">Education</h2>
-                <div class="cv-education-item">
-                    <div>
-                        <div class="cv-education-title">RevoU</div>
-                        <div class="cv-education-details">Full Stack Data Analytics Program - Batch October 2025</div>
+                <div class="cv-job">
+                    <div class="cv-job-header">
+                        <div>
+                            <div class="cv-job-title">Mathematics Seminar Committee</div>
+                            <div class="cv-job-company">Sanata Dharma University</div>
+                        </div>
+                        <div class="cv-job-date">June 2014 – October 2014</div>
                     </div>
-                    <div class="cv-education-date">October 2025 – February 2026</div>
+                    <div>
+                        <p><em>Coordinated logistics and data integrity for a national-level mathematics seminar attended by 200+ participants and speakers.</em></p>
+                    </div>
+                    <ul>
+                        <li><strong>Data Normalization:</strong> Synthesized a master participant database for 200+ national attendees by aggregating and cleaning unstructured raw email submissions using Advanced Excel, establishing a single source of truth.</li>
+                        <li><strong>Operational Efficiency:</strong> Designed an automated tracking tool using Excel formulas to identify duplicate registrations and payment discrepancies, cutting administrative processing time by 30%.</li>
+                        <li><strong>Stakeholder Coordination:</strong> Managed the onboarding workflow for speakers and participants, ensuring 100% timely fee collection and accurate affiliation tagging for the event directory.</li>
+                    </ul>
+                </div>
+                <div class="cv-education">
+                    <div class="cv-education-header">
+                        <div>
+                            <div class="cv-education-title">RevoU</div>
+                            <div class="cv-education-details">Full Stack Data Analytics Program - Batch October 2025</div>
+                        </div>
+                        <div class="cv-education-date">October 2025 – February 2026</div>
+                    </div>
                     <div>
                         <p><em>Mastered end-to-end data analytics workflows, from statistical modeling and Python scripting to stakeholder-ready visualization using Tableau and Power BI.</em></p>
                     </div>
                 </div>
-                <div class="cv-education-item">
-                    <div>
-                        <div class="cv-education-title">Sanata Dharma University</div>
-                        <div class="cv-education-details">Bachelor of Science (S.Si) in Mathematics – GPA 3.67/4.00</div>
+                <div class="cv-education">
+                    <div class="cv-education-header">
+                        <div>
+                            <div class="cv-education-title">Sanata Dharma University</div>
+                            <div class="cv-education-details">Bachelor of Science (S.Si) in Mathematics – GPA 3.67/4.00</div>
+                        </div>
+                        <div class="cv-education-date">September 2009 – August 2014</div>
                     </div>
-                    <div class="cv-education-date">September 2009 – August 2014</div>
                     <div>
                         <p><em>Built foundational analytical rigor through advanced calculus, statistical theory, and logical problem-solving applicable to complex data environments.</em></p>
                     </div>
