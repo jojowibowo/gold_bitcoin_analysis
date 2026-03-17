@@ -553,12 +553,12 @@
         }
 
         /* Hover Effects */
-        .cv-certification-link:hover .cv-certification {
-            border-color: #007bff; /* Change to your brand color */
+        /* .cv-certification-link:hover .cv-certification {
+            border-color: var(--brand-blue);
             background-color: #f8fbff;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
+            box-shadow: 0 4px 12px rgba(0,51,102,0.1);
+        } */
 
         /* Styling the text inside */
         .cert-name {
@@ -574,8 +574,8 @@
         }
 
         /* Subtle color change on hover for the title */
-        .cv-certification-link:hover .cert-name {
-            color: #007bff;
+        .cv-certification-link:hover .cert-name, .cv-certification-link:hover .cert-meta {
+            color: var(--brand-blue);
         }
         
         /* Projects Section */
@@ -607,7 +607,7 @@
             overflow: hidden;
         }
         
-        .project-card:hover {
+        .project-card:hover, .cv-certification-link:hover .cv-certification{
             border-color: var(--brand-blue);
             box-shadow: 0 10px 30px rgba(0,51,102,0.1);
             transform: translateY(-4px);
