@@ -526,19 +526,56 @@
             border-radius: 50%;
         }
         
+        /* Container for all buttons */
         .cv-certifications-list {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
+            flex-direction: column;
+            gap: 12px; /* Spacing between buttons */
+            margin-top: 15px;
         }
-        
+
+        /* Removes default link styling */
+        .cv-certification-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        /* The Button Body */
         .cv-certification {
-            background: white;
-            padding: 0.75rem 1.25rem;
-            border-radius: 2rem;
-            border: 1px solid var(--brand-gold);
-            font-size: 0.875rem;
-            color: var(--text-dark);
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Hover Effects */
+        .cv-certification-link:hover .cv-certification {
+            border-color: #007bff; /* Change to your brand color */
+            background-color: #f8fbff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Styling the text inside */
+        .cert-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #222;
+            margin-bottom: 4px;
+        }
+
+        .cert-meta {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Subtle color change on hover for the title */
+        .cv-certification-link:hover .cert-name {
+            color: #007bff;
         }
         
         /* Projects Section */
