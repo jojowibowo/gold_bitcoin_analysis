@@ -539,6 +539,24 @@
             border: 1px solid var(--brand-gold);
             font-size: 0.875rem;
             color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .cv-certification:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(184,134,11,0.3);
+            background: linear-gradient(135deg, #fffdf5 0%, #fefaf0 100%);
+        }
+
+        body.dark .cv-certification:hover {
+            background: linear-gradient(135deg, var(--card-dark) 0%, #2a2a2f 100%);
+            box-shadow: 0 4px 12px rgba(244,162,97,0.4);
+        }
+
+        /* Remove inner link hover since no longer used */
+        .cv-certification a:hover {
+            text-decoration: none;
         }
         
         /* Projects Section */
@@ -1302,6 +1320,10 @@
 
     <script src="https://jojowibowo.github.io/gold_bitcoin_analysis/dist/app.js"></script>
     <script>
+        function openCert(url) {
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+
         // Dark Mode Toggle Functionality
         function toggleDarkMode() {
             document.body.classList.toggle('dark');
@@ -1317,5 +1339,10 @@
             }
         });
     </script>
+<script>
+function openCert(url) {
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
+</script>
 </body>
 </html>
