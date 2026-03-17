@@ -11,6 +11,7 @@
         "Seaborn",
         "svgs",
         "viewports",
-        "Winsorization"
+        "Winsorization",
+        "yfinance"
     ]
 }
