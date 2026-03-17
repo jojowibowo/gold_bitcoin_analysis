@@ -148,6 +148,9 @@
             border-color: var(--brand-blue-dark);
             box-shadow: 0 10px 30px rgba(100,181,246,0.2);
         }
+        body.dark .cv-certification-link:hover .cert-name, body.dark .cv-certification-link:hover .cert-meta {
+            color: var(--brand-blue-dark);
+        }
         body.dark .project-card-title {
             color: var(--text-light);
         }
@@ -551,14 +554,6 @@
             display: flex;
             flex-direction: column;
         }
-
-        /* Hover Effects */
-        /* .cv-certification-link:hover .cv-certification {
-            border-color: var(--brand-blue);
-            background-color: #f8fbff;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,51,102,0.1);
-        } */
 
         /* Styling the text inside */
         .cert-name {
@@ -1285,27 +1280,10 @@
             <div class="cv-section">
                 <h2 class="cv-section-title">Certifications</h2>
                 <div class="cv-certifications-list">
-                    <a href="https://certificates.revou.tech/?id=FSDA-2026-03-39566531930&name=Yohanes%20Dimas%20Nugrahanto%20Wibowo" target="_blank" rel="noopener">
-                        <div class="cv-certification">Full Stack Data Analytics Certification () – RevoU (March 2026)</div>
-                    </a>
-                    <a href="https://example.com" target="_blank" rel="noopener">
-                        <div class="cv-certification">BLABLA Certification () – Example Provider (2024)</div>
-                    </a>
-                </div>
-            </div>
-            <div class="cv-section">
-                <h2 class="cv-section-title">Certifications</h2>
-                <div class="cv-certifications-list">
                     <a href="https://certificates.revou.tech/?id=FSDA-2026-03-39566531930&name=Yohanes%20Dimas%20Nugrahanto%20Wibowo" target="_blank" rel="noopener" class="cv-certification-link">
                         <div class="cv-certification">
                             <span class="cert-name">Full Stack Data Analytics Certification</span>
                             <span class="cert-meta">RevoU • March 2026</span>
-                        </div>
-                    </a>
-                    <a href="https://example.com" target="_blank" rel="noopener" class="cv-certification-link">
-                        <div class="cv-certification">
-                            <span class="cert-name">BLABLA Certification</span>
-                            <span class="cert-meta">Example Provider • 2024</span>
                         </div>
                     </a>
                 </div>
