@@ -231,7 +231,7 @@ function renderProjectSummary(projectId) {
         <h3>The Problem</h3>
         <p>${project.problem}</p>
         
-        <h3>The Solution: "Traffic Light" Indicators</h3>
+        <h3>The Solution</h3>
         <ul>
             ${solutionItems}
         </ul>
