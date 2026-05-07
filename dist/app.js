@@ -64,11 +64,11 @@ const projects = {
         subtitle: 'From Aggregate Stability to Segment-Specific Risk: A Data-Driven Strategy to Protect $2.8B in Active Capital',
         author: 'Jojo Wibowo',
         image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop',
-        videoUrl: ' ',
-        videoPoster: ' ',
-        videoCaption: ' ',
-        dashboardUrl: ' ',
-        presentationUrl: ' ',
+        videoUrls: ' ',
+        videoPosters: ' ',
+        videoCaptions: ' ',
+        dashboardUrls: ' ',
+        presentationUrls: ' ',
         
         // Project Summary section
         summary: `A comprehensive risk audit of a $2.8 Billion active P2P lending portfolio using BigQuery and Python. Identified a critical "High-Income Inversion" anomaly where Grade D high-earners exhibited a 41.67% default rate, leading to strategic underwriting reforms to protect capital reserves.`,
