@@ -78,8 +78,8 @@ const projects = {
 
         // Solution section
         solution: {
-            riskIdentification: 'Anomaly Detection: Engineered a regex-based data pipeline in BigQuery to sanitize 176,000+ customer records, achieving 100% join integrity and isolating a "High-Income Outlier" segment (>3 SD income).',
-            strategicRemediation: 'Actionable Framework: Developed a data-driven strategy recommending dynamic DTI caps (30%) for Grade D outliers and manual tax verification for Small Business loans, projected to reduce Expected Loss by 5%.'
+            riskIdentification: '<strong>Anomaly Detection:</strong> Engineered a regex-based data pipeline in BigQuery to sanitize more than 122,000 customer records, achieving 100% join integrity and isolating a "High-Income Outlier" segment (bigger than 3 SD income).',
+            strategicRemediation: '<strong>Actionable Framework:</strong> Developed a data-driven strategy recommending dynamic DTI caps (30%) for Grade D outliers and manual tax verification for Small Business loans, projected to reduce Expected Loss by 5%.'
         },
 
         // Key Insights table
