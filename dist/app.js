@@ -78,8 +78,8 @@ const projects = {
 
         // Solution section
         solution: {
-            riskIdentification: '<strong>Anomaly Detection:</strong> Engineered a regex-based data pipeline in BigQuery to sanitize more than 122,000 customer records, achieving 100% join integrity and isolating a "High-Income Outlier" segment (bigger than 3 SD income).',
-            strategicRemediation: '<strong>Actionable Framework:</strong> Developed a data-driven strategy recommending dynamic DTI caps (30%) for Grade D outliers and manual tax verification for Small Business loans, projected to reduce Expected Loss by 5%.'
+            gold: '<strong>Anomaly Detection:</strong> Engineered a regex-based data pipeline in BigQuery to sanitize more than 122,000 customer records, achieving 100% join integrity and isolating a "High-Income Outlier" segment (bigger than 3 SD income).',
+            bitcoin: '<strong>Actionable Framework:</strong> Developed a data-driven strategy recommending dynamic DTI caps (30%) for Grade D outliers and manual tax verification for Small Business loans, projected to reduce Expected Loss by 5%.'
         },
 
         // Key Insights table
@@ -91,8 +91,8 @@ const projects = {
 
         // Model Performance
         modelPerformance: {
-            dataIntegrity: 'Achieved 100% record match rate across customer and loan tables via regex-based ID sanitization, eliminating silent join failures.',
-            riskPrediction: 'Identified a 41.67% TKB30 failure rate in the October 2019 Grade D Outlier cohort (vs. 90% for normal borrowers), validating the "High-Income Inversion" hypothesis.'
+            logisticRegression: 'Achieved 100% record match rate across customer and loan tables via regex-based ID sanitization, eliminating silent join failures.',
+            randomForest: 'Identified a 41.67% TKB30 failure rate in the October 2019 Grade D Outlier cohort (vs. 90% for normal borrowers), validating the "High-Income Inversion" hypothesis.'
         },
 
         // Technical Implementation
