@@ -59,55 +59,55 @@ const projects = {
     // Mock Project Beta
     'beta': {
         id: 'beta',
-        title: 'Market Sentiment Analytics Dashboard',
-        shortTitle: 'Sentiment Analytics',
-        subtitle: 'Real-time Market Mood Analysis Using Machine Learning',
+        title: 'The High-Income Paradox: Unmasking the Hidden Volatility in Grade D Outliers',
+        shortTitle: 'High-Income Paradox',
+        subtitle: 'From Aggregate Stability to Segment-Specific Risk: A Data-Driven Strategy to Protect $2.8B in Active Capital',
         author: 'Jojo Wibowo',
         image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop',
-        videoUrl: 'https://example.com/sentiment_dashboard.mp4',
-        videoPoster: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop',
-        videoCaption: 'Real-time sentiment analytics dashboard with NLP-powered news analysis and social media trend monitoring.',
-        dashboardUrl: 'https://dashboard.example.com/beta',
-        presentationUrl: 'https://jojowibowo.github.io/gold_bitcoin_analysis/reports/sentiment_analytics_presentation1.pdf',
+        videoUrl: ' ',
+        videoPoster: ' ',
+        videoCaption: ' ',
+        dashboardUrl: ' ',
+        presentationUrl: ' ',
         
         // Project Summary section
-        summary: `A comprehensive market sentiment analytics platform that processes news headlines, social media feeds, and trading volume to generate real-time mood indicators for global financial markets. Built using Python and modern ML techniques to help traders make informed decisions.`,
-        
+        summary: `A comprehensive risk audit of a $2.8 Billion active P2P lending portfolio using BigQuery and Python. Identified a critical "High-Income Inversion" anomaly where Grade D high-earners exhibited a 41.67% default rate, leading to strategic underwriting reforms to protect capital reserves.`,
+
         // Problem section
-        problem: `Traders and investors often struggle to quantify market sentiment from multiple data sources. Manual analysis is time-consuming and prone to human bias. There is a need for an automated, data-driven approach to gauge market mood in real-time.`,
-        
+        problem: `Traditional underwriting models assumed high income equaled low risk. Aggregate portfolio metrics (98.1% TKB30) masked a localized collapse in repayment discipline among high-income outliers in mid-tier risk grades, threatening $46M in concentrated exposure.`,
+
         // Solution section
         solution: {
-            sentiment: 'Sentiment Analysis: Utilizes Natural Language Processing (NLP) to analyze news articles and social media posts, converting textual data into quantifiable sentiment scores.',
-            visualization: 'Visual Dashboard: An interactive web-based dashboard displaying real-time sentiment indices, trend analysis, and predictive alerts for major market movements.'
+            riskIdentification: 'Anomaly Detection: Engineered a regex-based data pipeline in BigQuery to sanitize 176,000+ customer records, achieving 100% join integrity and isolating a "High-Income Outlier" segment (>3 SD income).',
+            strategicRemediation: 'Actionable Framework: Developed a data-driven strategy recommending dynamic DTI caps (30%) for Grade D outliers and manual tax verification for Small Business loans, projected to reduce Expected Loss by 5%.'
         },
-        
+
         // Key Insights table
-        warning: `This is only a mock-up result.`,
+        warning: `Results based on actual portfolio data (Oct 2019 - Feb 2026).`,
         insights: [
-            { asset: 'News Sentiment', keyDriver: 'NLP Model Score', strategy: 'Buy on positive sentiment spikes (>70)' },
-            { asset: 'Social Media', keyDriver: 'Tweet Volume & Polarity', strategy: 'Monitor for viral trends' }
+            { asset: 'Grade D Outliers', keyDriver: 'Over-leverage & High Cost of Living', strategy: 'Implement hard DTI caps for high-income applicants in CA/NY/FL/TX' },
+            { asset: 'Small Business Loans', keyDriver: 'Cash-flow volatility vs. reported income', strategy: 'Mandate manual tax transcript verification for loans >$25k' }
         ],
-        
+
         // Model Performance
         modelPerformance: {
-            logisticRegression: 'The sentiment classification model achieved 85.3% accuracy in predicting market direction based on news sentiment.',
-            randomForest: 'The ensemble model combining multiple data sources achieved 82.1% accuracy with a precision of 79.5%.'
+            dataIntegrity: 'Achieved 100% record match rate across customer and loan tables via regex-based ID sanitization, eliminating silent join failures.',
+            riskPrediction: 'Identified a 41.67% TKB30 failure rate in the October 2019 Grade D Outlier cohort (vs. 90% for normal borrowers), validating the "High-Income Inversion" hypothesis.'
         },
-        
+
         // Technical Implementation
         technical: {
-            dataPipeline: 'Built a scalable data pipeline processing over 10,000 news articles and 50,000 social media posts daily.',
-            dataEngineering: 'Integrated APIs from major news providers and social media platforms. Applied text preprocessing and cleaning using NLTK and spaCy.',
-            featureEngineering: 'Engineered features including sentiment polarity, subjectivity scores, named entity recognition, and emotional tone classification.',
-            modeling: 'Benchmarked Naive Bayes, SVM, Random Forest, and Transformer-based models (BERT) for sentiment classification.'
+            dataPipeline: 'Built a scalable SQL pipeline in BigQuery processing $2.8B in outstanding principal, filtering for active portfolio status (Current, Late, Default) to remove survival bias.',
+            dataEngineering: 'Applied regex sanitization (regexp_extract_all) to normalize customer IDs across disparate tables; calculated TKB30, ENR, and cohort performance metrics.',
+            featureEngineering: 'Engineered risk features including Debt-to-Income (DTI) ratios, geographic cost-of-living adjustments, and employment tenure segmentation.',
+            modeling: 'Conducted Root Cause Analysis (RCA) using Issue Trees and Pareto Analysis; performed Failure Mode and Effects Analysis (FMEA) on proposed underwriting changes.'
         },
-        
+
         // Tools
-        tools: ['Python', 'scikit-learn', 'TensorFlow', 'NLTK', 'spaCy', 'Flask', 'React', 'PostgreSQL'],
-        
+        tools: ['BigQuery (SQL)', 'Regex', 'Root Cause Analysis', 'FMEA'],
+
         // Ethical Commitment
-        ethical1: `This project adheres to ethical AI principles, ensuring transparency in how sentiment is calculated and providing users with the ability to understand the model's limitations. Data privacy and responsible AI use are paramount.`,
+        ethical1: `This analysis prioritizes data integrity and transparency, ensuring that risk models are based on verified cash-flow stability rather than inflated income reports. Recommendations are designed to protect both the lender's capital and the borrower from unsustainable debt loads.`,
         ethical2: ' '
     }
 };
