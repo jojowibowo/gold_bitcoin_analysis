@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCA Unified Channel Performance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 250px;
+            }
+        }
+        .tab-active {
+            border-bottom: 4px solid #0d9488;
+            color: #1e3a8a;
+            font-weight: 700;
+        }
+        .tab-inactive {
+            border-bottom: 4px solid transparent;
+            color: #64748b;
+        }
+        .hidden-section {
+            display: none;
+        }
+        .step-card {
+            transition: all 0.3s ease;
+        }
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-slate-800 font-sans antialiased">
+    <!-- Chosen Palette: Warm Neutral (Stone-50), Navy Primary (#1e3a8a), Teal Accent (#0d9488), Slate Text -->
+    <!-- Application Structure Plan: The SPA is structured as an interactive 'Executive Command Center' using a tabbed navigation approach. This allows users to logically progress through the narrative of the report without overwhelming them on a single long scrolling page. Tab 1 provides the Executive Overview and high-level KPIs. Tab 2 details the Data Engineering methodology. Tab 3 dives into the Root Cause Analysis (visualizing the anomalies). Tab 4 outlines the Strategic Roadmap. This structure moves the user from 'What happened' to 'Why it happened' and finally 'What we do next'. -->
+    <!-- Visualization & Content Choices: 1. Sector Revenue (Goal: Proportions) -> Doughnut Chart (Chart.js) to show Travel/Finance dominance. 2. Voice Call Anomaly (Goal: Change/Compare) -> Line Chart showing the specific Wednesday 18:00 drop. 3. Latency Impact (Goal: Relationships) -> Bar Chart comparing baseline volume vs volume after a 5% read rate drop. 4. Methodology/Roadmap (Goal: Organize) -> Interactive CSS Grid cards using Unicode icons instead of SVG to adhere to constraints while remaining visually engaging. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <header class="mb-8 border-b border-stone-200 pb-6">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-end">
+                <div>
+                    <h1 class="text-4xl font-bold text-[#1e3a8a] mb-2">OCA Indonesia: Performance Intelligence</h1>
+                    <p class="text-lg text-slate-600">Strategic Analysis & Operational Excellence Dashboard</p>
+                </div>
+                <div class="mt-4 md:mt-0 text-right">
+                    <p class="text-sm font-semibold text-teal-700">Prepared by: Jojo (Strategic Data Analyst)</p>
+                    <p class="text-sm text-slate-500">May 16, 2026</p>
+                </div>
+            </div>
+        </header>
+
+        <nav class="flex overflow-x-auto mb-8 border-b border-stone-200" id="tabs">
+            <button onclick="switchTab('overview')" id="tab-btn-overview" class="tab-active px-6 py-3 text-lg focus:outline-none whitespace-nowrap transition-colors">💼 Executive Overview</button>
+            <button onclick="switchTab('engineering')" id="tab-btn-engineering" class="tab-inactive px-6 py-3 text-lg focus:outline-none whitespace-nowrap transition-colors">🛠️ Data Sanitization</button>
+            <button onclick="switchTab('rca')" id="tab-btn-rca" class="tab-inactive px-6 py-3 text-lg focus:outline-none whitespace-nowrap transition-colors">📉 Root Cause Analysis</button>
+            <button onclick="switchTab('strategy')" id="tab-btn-strategy" class="tab-inactive px-6 py-3 text-lg focus:outline-none whitespace-nowrap transition-colors">🚀 Strategic Roadmap</button>
+            <button onclick="switchTab('interactive')" id="tab-btn-interactive" class="tab-inactive px-6 py-3 text-lg focus:outline-none whitespace-nowrap transition-colors">📊 Interactive Dashboard</button>
+        </nav>
+
+        <main>
+            <section id="overview" class="block">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-[#1e3a8a] mb-4">Platform Unification & Health</h2>
+                    <p class="text-slate-700 leading-relaxed">
+                        This section provides a high-level summary of the Unified Channel Performance project. The primary objective was to migrate from fragmented, channel-specific silos to a centralized, high-integrity "Source of Truth." Data fragmentation creates dangerous blind spots, obscuring the true cost of customer acquisition. Below is the current unified state of OCA's transaction volume and revenue concentration.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100 border-t-4 border-t-[#1e3a8a]">
+                        <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-1">Unified Records</h3>
+                        <p class="text-4xl font-bold text-[#1e3a8a]">122,000+</p>
+                        <p class="text-sm text-teal-600 mt-2">Across WA, SMS, Email, & Voice</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100 border-t-4 border-t-[#0d9488]">
+                        <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-1">Top Sector Revenue</h3>
+                        <p class="text-4xl font-bold text-[#0d9488]">64%</p>
+                        <p class="text-sm text-slate-600 mt-2">Driven by Travel & Finance</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100 border-t-4 border-t-[#1e3a8a]">
+                        <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-1">Text-Channel Success</h3>
+                        <p class="text-4xl font-bold text-[#1e3a8a]">&gt;95%</p>
+                        <p class="text-sm text-teal-600 mt-2">Highly stable baseline</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                    <h3 class="text-xl font-bold text-[#1e3a8a] mb-4">Sectoral Revenue Drivers</h3>
+                    <p class="text-sm text-slate-600 mb-6">Visualizing the concentration of platform revenue. Travel and Finance act as the "Engine Rooms" of OCA Indonesia.</p>
+                    <div class="chart-container">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="engineering" class="hidden-section">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-[#1e3a8a] mb-4">6-Step Data Integrity Audit</h2>
+                    <p class="text-slate-700 leading-relaxed mb-6">
+                        To ensure "Operational Readiness," we executed a rigorous audit. This process transformed raw, noisy logs into high-fidelity dimensions for C-suite decision-making and legal auditing. Click on any step below to reveal the specific technical actions taken.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="step-card bg-white p-6 rounded-xl shadow-sm border border-stone-200 cursor-pointer" onclick="toggleDetails('step1-details')">
+                        <div class="text-3xl mb-3 text-[#1e3a8a]">🗄️</div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">1. Schema Unification</h3>
+                        <p class="text-sm text-slate-600 mb-4">Addressed the "Data Silo Problem" using BigQuery UNION ALL logic.</p>
+                        <div id="step1-details" class="hidden-section mt-4 pt-4 border-t border-stone-100 text-sm text-slate-700 bg-stone-50 p-3 rounded">
+                            Disparate naming conventions (e.g., last_status vs. message_status) were semantically mapped into a single status column, enabling cross-channel ROI comparisons.
+                        </div>
+                    </div>
+
+                    <div class="step-card bg-white p-6 rounded-xl shadow-sm border-2 border-teal-500 cursor-pointer" onclick="toggleDetails('step2-details')">
+                        <div class="flex justify-between items-start">
+                            <div class="text-3xl mb-3 text-teal-600">⚠️</div>
+                            <span class="bg-teal-100 text-teal-800 text-xs font-bold px-2 py-1 rounded">CRITICAL FIX</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">2. ID Truncation Fix</h3>
+                        <p class="text-sm text-slate-600 mb-4">Remediated the Scientific Notation Bug in the ETL pipeline.</p>
+                        <div id="step2-details" class="hidden-section mt-4 pt-4 border-t border-stone-100 text-sm text-slate-700 bg-teal-50 p-3 rounded">
+                            24-character hex Email IDs were incorrectly ingested as float64, truncating into scientific notation (e.g., 1.23E+23) and losing uniqueness. Scripts refactored to STRING, restoring 100% reconciliation accuracy.
+                        </div>
+                    </div>
+
+                    <div class="step-card bg-white p-6 rounded-xl shadow-sm border border-stone-200 cursor-pointer" onclick="toggleDetails('step3-details')">
+                        <div class="text-3xl mb-3 text-[#1e3a8a]">✅</div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">3. Null-Value Validation</h3>
+                        <p class="text-sm text-slate-600 mb-4">Enforced zero-tolerance for NULLs in Critical Path columns.</p>
+                        <div id="step3-details" class="hidden-section mt-4 pt-4 border-t border-stone-100 text-sm text-slate-700 bg-stone-50 p-3 rounded">
+                            Resolved "0.0" irregular values in revenue fields where is_charge was TRUE, correcting significant under-reporting biases in financial forecasts.
+                        </div>
+                    </div>
+
+                    <div class="step-card bg-white p-6 rounded-xl shadow-sm border border-stone-200 cursor-pointer" onclick="toggleDetails('step4-details')">
+                        <div class="text-3xl mb-3 text-[#1e3a8a]">🧹</div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">4. Duplicate Scrubbing</h3>
+                        <p class="text-sm text-slate-600 mb-4">Executed rigorous full-row uniqueness validation for billing integrity.</p>
+                        <div id="step4-details" class="hidden-section mt-4 pt-4 border-t border-stone-100 text-sm text-slate-700 bg-stone-50 p-3 rounded">
+                            Identified and removed redundant logs caused by retry-loop glitches in bulk SMS blasts, protecting client marketing budgets and averting contract terminations.
+                        </div>
+                    </div>
+
+                    <div class="step-card bg-white p-6 rounded-xl shadow-sm border border-stone-200 cursor-pointer" onclick="toggleDetails('step5-details')">
+                        <div class="text-3xl mb-3 text-[#1e3a8a]">📈</div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">5. Outlier Management</h3>
+                        <p class="text-sm text-slate-600 mb-4">Distinguished "Power Users" from "System Noise" using IQR.</p>
+                        <div id="step5-details" class="hidden-section mt-4 pt-4 border-t border-stone-100 text-sm text-slate-700 bg-stone-50 p-3 rounded">
+                            Separated legitimate high-frequency OTP traffic from API loop errors, ensuring dashboard visualizes "Clean Growth" rather than artificial traffic surges.
+                        </div>
+                    </div>
+
+                    <div class="step-card bg-white p-6 rounded-xl shadow-sm border border-stone-200 cursor-pointer" onclick="toggleDetails('step6-details')">
+                        <div class="text-3xl mb-3 text-[#1e3a8a]">🏷️</div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">6. Metadata Integration</h3>
+                        <p class="text-sm text-slate-600 mb-4">Enriched transaction data via complex LEFT JOIN operations.</p>
+                        <div id="step6-details" class="hidden-section mt-4 pt-4 border-t border-stone-100 text-sm text-slate-700 bg-stone-50 p-3 rounded">
+                            Connected cryptic transaction IDs to user_name and field_of_business. Moved analysis from "What happened" to "Who it happened to" for segmented health checks.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="rca" class="hidden-section">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-[#1e3a8a] mb-4">Root Cause Analysis (RCA)</h2>
+                    <p class="text-slate-700 leading-relaxed">
+                        Applying the Pattern → Anomaly → Impact → Hypothesis diagnostic framework uncovered hidden operational bottlenecks previously masked by siloed reporting. We identified critical issues in Voice Call routing and the severe financial impact of message latency.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                        <h3 class="text-xl font-bold text-[#1e3a8a] mb-2">The "Voice Call" Bottleneck</h3>
+                        <p class="text-sm text-slate-600 mb-4">Anomaly: Success rates drop by 35% during Wed 18:00 WIB peaks among Finance clients due to carrier congestion/SIP-trunking limits.</p>
+                        <div class="chart-container">
+                            <canvas id="voiceChart"></canvas>
+                        </div>
+                        <div class="mt-4 p-4 bg-red-50 border border-red-100 rounded-lg text-sm text-red-800">
+                            <strong>Impact:</strong> Wasted infrastructure budget and degraded UX. Bank customers are left unable to authorize time-sensitive transactions.
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                        <h3 class="text-xl font-bold text-[#1e3a8a] mb-2">Latency Sensitivity in Finance</h3>
+                        <p class="text-sm text-slate-600 mb-4">Observation: A mere 5% dip in WA Read Rates correlates directly with a 12% slowdown in subsequent transaction volume.</p>
+                        <div class="chart-container">
+                            <canvas id="latencyChart"></canvas>
+                        </div>
+                        <div class="mt-4 p-4 bg-[#f8fafc] border border-slate-200 rounded-lg text-sm text-slate-700">
+                            <strong>Implication:</strong> Delivery speed is a direct driver of billable volume. Delayed OTPs cause high abandonment rates.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="strategy" class="hidden-section">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-[#1e3a8a] mb-4">Strategic Recommendations & Roadmap</h2>
+                    <p class="text-slate-700 leading-relaxed">
+                        To capitalize on the analytical findings and drive long-term operational excellence, we propose a three-pronged strategy for the next fiscal quarter. This transforms our approach from reactive troubleshooting to proactive platform management.
+                    </p>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden">
+                        <div class="bg-[#1e3a8a] p-6 flex items-center justify-center text-white text-4xl w-full md:w-32">
+                            💰
+                        </div>
+                        <div class="p-6 flex-1">
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">1. Predictive Credit & Burn-Rate Monitoring</h3>
+                            <p class="text-slate-600 mb-3">Implement an automated alert system for Top 10 Enterprise users based on real-time hourly volume analysis.</p>
+                            <ul class="list-disc list-inside text-sm text-slate-700 space-y-1">
+                                <li>Projects when prepaid balances will hit zero.</li>
+                                <li>Triggers "Top-Up" notification <strong>4 hours before</strong> service interruption.</li>
+                                <li><strong>Risk Mitigation:</strong> Prevents 4-7% loss in monthly billable volume from "Midnight Outages."</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden">
+                        <div class="bg-teal-600 p-6 flex items-center justify-center text-white text-4xl w-full md:w-32">
+                            ⚖️
+                        </div>
+                        <div class="p-6 flex-1">
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">2. Temporal Load Balancing (Traffic Tiering)</h3>
+                            <p class="text-slate-600 mb-3">Deploy a dynamic queuing logic engine to mitigate the Wednesday 18:00 carrier congestion bottleneck.</p>
+                            <ul class="list-disc list-inside text-sm text-slate-700 space-y-1">
+                                <li><strong>Prioritize:</strong> "Transactional" traffic (Bank OTPs/2FA) through premium, low-latency gateways.</li>
+                                <li><strong>Queue:</strong> "Promotional" traffic automatically offset by 15-30 minutes.</li>
+                                <li>Ensures high-stakes financial transactions are never delayed by marketing spam.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden">
+                        <div class="bg-indigo-600 p-6 flex items-center justify-center text-white text-4xl w-full md:w-32">
+                            🔄
+                        </div>
+                        <div class="p-6 flex-1">
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">3. Channel Optimization & Migration</h3>
+                            <p class="text-slate-600 mb-3">Incentivize Finance clients to migrate non-critical alerts from expensive, failing Voice trunks to WhatsApp.</p>
+                            <ul class="list-disc list-inside text-sm text-slate-700 space-y-1">
+                                <li>WhatsApp offers higher success margins and verifiable "Read Rate" tracking.</li>
+                                <li>Launch a "WhatsApp First" pilot program offering a <strong>5% discount</strong> for 50% Voice volume transition.</li>
+                                <li>Reduces carrier-level friction and lowers OCA's operational overhead.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="interactive" class="hidden-section">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-[#1e3a8a] mb-4">Interactive Performance Intelligence</h2>
+                    <p class="text-slate-700 leading-relaxed mb-6">
+                        Explore real-time granular metrics, custom date ranges, and deep-dive cross-channel dimensions using the live Looker Studio embed console below. 
+                    </p>
+                </div>
+                
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-stone-100 flex justify-center items-center">
+                    <div class="w-full max-w-5xl aspect-[4/3] md:aspect-[4/3] min-h-[500px]">
+                        <iframe 
+                            class="w-full h-full rounded-lg"
+                            src="https://datastudio.google.com/embed/reporting/fd16b2c3-b67f-4e26-a3c3-24ca8e8a9753/page/p_hxb1lp8o3d" 
+                            frameborder="0" 
+                            style="border:0" 
+                            allowfullscreen 
+                            sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
+                        </iframe>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="mt-16 border-t border-stone-200 pt-8">
+            <div class="bg-stone-100 p-6 rounded-lg text-sm text-slate-500 italic flex flex-col md:flex-row items-center gap-6">
+                
+                <!-- Image Container -->
+                <div class="flex-shrink-0 w-1/2 md:w-1/2">
+                    <img src="https://jojowibowo.github.io/gold_bitcoin_analysis/visualisations/FEB26 Logo RevoU x OCA x Telkom.png" alt="Disclaimer Icon" class="w-full h-full object-contain rounded">
+                </div>
+                
+                <!-- Text Container -->
+                <div class="text-center md:text-left">
+                    <p class="font-bold mb-1 uppercase tracking-widest text-xs text-stone-700 not-italic">Mandatory Disclaimer</p>
+                    <p>The data provided is a representation of the original data which amount has been adjusted. The data used is NOT representation of original data, adjusted for educational purposes and does not reflect the actual business condition of the company.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const tabIds = ['overview', 'engineering', 'rca', 'strategy', 'interactive'];
+        let chartsInitialized = false;
+
+        function switchTab(activeId) {
+            tabIds.forEach(id => {
+                const section = document.getElementById(id);
+                const btn = document.getElementById(`tab-btn-${id}`);
+                
+                if (id === activeId) {
+                    section.classList.remove('hidden-section');
+                    section.classList.add('block');
+                    btn.classList.remove('tab-inactive');
+                    btn.classList.add('tab-active');
+                } else {
+                    section.classList.remove('block');
+                    section.classList.add('hidden-section');
+                    btn.classList.remove('tab-active');
+                    btn.classList.add('tab-inactive');
+                }
+            });
+
+            if (activeId === 'overview' && !chartsInitialized) {
+                initCharts();
+            } else if (activeId === 'rca' && !chartsInitialized) {
+                initCharts(); 
+            }
+        }
+
+        function toggleDetails(id) {
+            const el = document.getElementById(id);
+            if (el.classList.contains('hidden-section')) {
+                el.classList.remove('hidden-section');
+                el.classList.add('block');
+            } else {
+                el.classList.remove('block');
+                el.classList.add('hidden-section');
+            }
+        }
+
+        function initCharts() {
+            const revCanvas = document.getElementById('revenueChart');
+            const voiceCanvas = document.getElementById('voiceChart');
+            const latencyCanvas = document.getElementById('latencyChart');
+
+            if (revCanvas) {
+                new Chart(revCanvas, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Finance', 'Travel', 'Retail', 'Other'],
+                        datasets: [{
+                            data: [32, 32, 18, 18],
+                            backgroundColor: ['#1e3a8a', '#0d9488', '#64748b', '#cbd5e1'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { position: 'right' },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return ' ' + context.label + ': ' + context.parsed + '% Revenue Share';
+                                    }
+                                }
+                            }
+                        },
+                        cutout: '70%'
+                    }
+                });
+            }
+
+            if (voiceCanvas) {
+                new Chart(voiceCanvas, {
+                    type: 'line',
+                    data: {
+                        labels: ['Mon 12:00', 'Tue 12:00', 'Wed 12:00', 'Wed 18:00', 'Thu 12:00', 'Fri 12:00'],
+                        datasets: [{
+                            label: 'Voice Success Rate (%)',
+                            data: [96, 95, 94, 60, 95, 96],
+                            borderColor: '#ef4444',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.3,
+                            pointBackgroundColor: '#ef4444',
+                            pointRadius: 5,
+                            pointHoverRadius: 8
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: { min: 40, max: 100, title: { display: true, text: 'Success Rate (%)' } }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) { label += ': '; }
+                                        if (context.parsed.y !== null) { label += context.parsed.y + '%'; }
+                                        if(context.dataIndex === 3) { label += ' (Anomaly Identified)'; }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            if (latencyCanvas) {
+                new Chart(latencyCanvas, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Optimal Performance', 'Latency Impacted (5% Read Drop)'],
+                        datasets: [
+                            {
+                                label: 'Subsequent Transaction Volume Index',
+                                data: [100, 88], 
+                                backgroundColor: ['#0d9488', '#94a3b8'],
+                                borderRadius: 4
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: { min: 50, max: 110, title: { display: true, text: 'Volume Index (Baseline=100)' } }
+                        },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return 'Volume Index: ' + context.parsed.y + (context.dataIndex === 1 ? ' (-12% Drop)' : '');
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            chartsInitialized = true;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initCharts();
+        });
+    </script>
+</body>
+</html>
